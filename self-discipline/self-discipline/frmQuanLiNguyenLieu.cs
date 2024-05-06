@@ -1,0 +1,159 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using BLL;
+using DTO;
+
+namespace self_discipline
+{
+    public partial class frmQuanLiNguyenLieu : Form
+    {
+        private QuanLyNguyenLieuBLL nLBLL = new QuanLyNguyenLieuBLL();
+        private QuanLyNhaCungCapBLL nCCBLL = new QuanLyNhaCungCapBLL();
+        private QuanLyLoaiNguyenLieuBLL loaiNLBLL = new QuanLyLoaiNguyenLieuBLL();
+
+        public frmQuanLiNguyenLieu()
+        {
+            InitializeComponent();
+            dtgvQLNL.AutoGenerateColumns = false;
+        }
+
+        private void frmQuanLiNguyenLieu_Load(object sender, EventArgs e)
+        {
+            colMaNCC.DataSource = nCCBLL.layDSNCC();
+            colMaNCC.DisplayMember = "TenNCC";
+            colMaNCC.ValueMember = "MaNCC";
+
+            cbbTenNCC.DataSource = nCCBLL.layDSNCC();
+            cbbTenNCC.DisplayMember = "TenNCC";
+            cbbTenNCC.ValueMember = "MaNCC";
+
+            colTenLoaiNL.DataSource = loaiNLBLL.layDSLoaiNL();
+            colTenLoaiNL.DisplayMember = "TenLoai";
+            colTenLoaiNL.ValueMember = "MaLoai";
+
+            cbbTenLoaiNL.DataSource = loaiNLBLL.layDSLoaiNL();
+            cbbTenLoaiNL.DisplayMember = "TenLoai";
+            cbbTenLoaiNL.ValueMember = "MaLoai";
+
+            dtgvQLNL.DataSource = nLBLL.layDSNL();
+        }
+
+        private void dtgvQLNL_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                txtMaNL.Text = dtgvQLNL.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txtTenNL.Text = dtgvQLNL.Rows[e.RowIndex].Cells[1].Value.ToString();
+                cbbTenLoaiNL.SelectedValue = dtgvQLNL.Rows[e.RowIndex].Cells[2].Value;
+                cbbTenNCC.SelectedValue = dtgvQLNL.Rows[e.RowIndex].Cells[3].Value;
+                nbrSLTon.Value = (int)dtgvQLNL.Rows[e.RowIndex].Cells[4].Value;
+                txtDVT.Text = dtgvQLNL.Rows[e.RowIndex].Cells[5].Value.ToString();
+            }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            QuanLyNguyenLieuDTO nlNew = new QuanLyNguyenLieuDTO();
+
+            try
+            {
+                nlNew.TenNL = txtTenNL.Text;
+                nlNew.LoaiNguyenLieu = (int)cbbTenLoaiNL.SelectedValue;
+                nlNew.MaNCC = (int)cbbTenNCC.SelectedValue;
+                nlNew.SLTon = (int)nbrSLTon.Value;
+                nlNew.DVT = txtDVT.Text;
+                nlNew.TrangThai = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (nLBLL.ThemNguyenLieu(nlNew))
+            {
+                MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                frmQuanLiNguyenLieu_Load(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Thêm thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+            QuanLyNguyenLieuDTO nlCapNhat = new QuanLyNguyenLieuDTO();
+
+            try
+            {
+                nlCapNhat.MaNL = Convert.ToInt32(txtMaNL.Text);
+                nlCapNhat.TenNL = txtTenNL.Text;
+                nlCapNhat.LoaiNguyenLieu = (int)cbbTenLoaiNL.SelectedValue;
+                nlCapNhat.MaNCC = (int)cbbTenNCC.SelectedValue;
+                nlCapNhat.SLTon = (int)nbrSLTon.Value;
+                nlCapNhat.DVT = txtDVT.Text;
+                nlCapNhat.TrangThai = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (nLBLL.CapNhatNguyenLieu(nlCapNhat))
+            {
+                MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                frmQuanLiNguyenLieu_Load(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            int id;
+
+            try
+            {
+               id = Convert.ToInt32(txtMaNL.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (nLBLL.XoaNguyenLieu(id))
+            {
+                MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                frmQuanLiNguyenLieu_Load(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
