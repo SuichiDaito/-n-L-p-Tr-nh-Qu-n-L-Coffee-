@@ -15,6 +15,7 @@ namespace self_discipline
     public partial class frmLoaiSanpham : Form
     {
         private QuanLyLoaiSanPhamBLL loaiSPBLL = new QuanLyLoaiSanPhamBLL();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmLoaiSanpham()
         {
@@ -38,6 +39,12 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenLoaiSanPham.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyLoaiSanPhamDTO loaiSPNew = new QuanLyLoaiSanPhamDTO();
 
             try
@@ -93,13 +100,18 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenLoaiSanPham.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyLoaiSanPhamDTO loaiSPCapNhat = new QuanLyLoaiSanPhamDTO();
 
             try
             {
                 loaiSPCapNhat.MaLoai = Convert.ToInt32(txtMaLoaiSanPham.Text);
                 loaiSPCapNhat.TenLoai = txtTenLoaiSanPham.Text;
-                loaiSPCapNhat.TrangThai = 1;
             }
             catch (Exception ex)
             {
@@ -107,7 +119,12 @@ namespace self_discipline
                 return;
             }
 
-            if (loaiSPBLL.CapNhatLoaiSP(loaiSPCapNhat))
+            if (!ktTT.KiemTraLSanPham(loaiSPCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (loaiSPBLL.CapNhatLoaiSP(loaiSPCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -122,7 +139,8 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            frmLoaiSanpham_Load(sender, e);
+            txtMaLoaiSanPham.Text = string.Empty;
+            txtTenLoaiSanPham.Text = string.Empty;
         }
     }
 }

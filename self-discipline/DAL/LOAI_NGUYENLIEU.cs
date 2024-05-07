@@ -17,7 +17,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LOAI_NGUYENLIEU()
         {
-            this.NGUYENLIEUx = new HashSet<NGUYENLIEU>();
+            this.NGUYENLIEU = new HashSet<NGUYENLIEU>();
         }
     
         public int MaLoai { get; set; }
@@ -25,6 +25,6 @@ namespace DAL
         public int TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NGUYENLIEU> NGUYENLIEUx { get; set; }
+        public virtual ICollection<NGUYENLIEU> NGUYENLIEU { get; set; }
     }
 }

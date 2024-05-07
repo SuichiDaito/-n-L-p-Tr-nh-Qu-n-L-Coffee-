@@ -17,6 +17,7 @@ namespace self_discipline
     public partial class frmQuanLy : Form
     {
         TaiKhoanBLL tkBLL = new TaiKhoanBLL();
+        ThongTinNhanVienBLL nvBLL = new ThongTinNhanVienBLL();
 
         public frmQuanLy()
         {
@@ -40,14 +41,19 @@ namespace self_discipline
             frmDangNhap frmDangNhap = Application.OpenForms.OfType<frmDangNhap>().FirstOrDefault();
             string username = frmDangNhap.Username;
             TaiKhoanDTO tk = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username && u.Quyen == 2);
+            TaiKhoanDTO tkTT = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username);
+            NhanVienDTO nv = nvBLL.LayDsNhanVien().SingleOrDefault(u => u.MaNV == tkTT.MaNV);
 
-            if(tk != null)
+            if (tk != null)
             {
                 btnQuanLi.Enabled = false;
                 btnQuanLi.FillColor = Color.Gray;
                 btnThongKe.Enabled = false;
                 btnBieuDo.Enabled = false;
             }
+
+            string hoTen = nv.Ho + " " + nv.Ten;
+            lblTenNVDangNhap.Text = hoTen;
         }
 
         private void btnDangXuat_Click(object sender, EventArgs e)

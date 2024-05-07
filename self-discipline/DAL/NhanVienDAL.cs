@@ -12,7 +12,7 @@ namespace DAL
         private COFFEE_HOUSEEntities COFFEE_HOUSEEnts = new COFFEE_HOUSEEntities();
         public List<NhanVienDTO> dsNhanVien()
         {
-            return COFFEE_HOUSEEnts.NHANVIENs.Select(u => new NhanVienDTO
+            return COFFEE_HOUSEEnts.NHANVIEN.Select(u => new NhanVienDTO
             {
                 MaNV = u.MaNV,
                 Ho = u.Ho,
@@ -44,7 +44,7 @@ namespace DAL
                     TrangThai = nhanVienNew.TrangThai,
                 };
 
-                COFFEE_HOUSEEnts.NHANVIENs.Add(nv);
+                COFFEE_HOUSEEnts.NHANVIEN.Add(nv);
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -58,7 +58,7 @@ namespace DAL
         {
             try
             {
-                NHANVIEN nv = COFFEE_HOUSEEnts.NHANVIENs.SingleOrDefault(u => u.MaNV == nhanVienCapNhat.MaNV);
+                NHANVIEN nv = COFFEE_HOUSEEnts.NHANVIEN.SingleOrDefault(u => u.MaNV == nhanVienCapNhat.MaNV);
 
                 nv.Ho = nhanVienCapNhat.Ho;
                 nv.Ten = nhanVienCapNhat.Ten;
@@ -67,7 +67,6 @@ namespace DAL
                 nv.DiaChi = nhanVienCapNhat.DiaChi;
                 nv.SDT = nhanVienCapNhat.SDT;
                 nv.Email = nhanVienCapNhat.Email;
-                nv.TrangThai = nhanVienCapNhat.TrangThai;
                 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -81,7 +80,7 @@ namespace DAL
         {
             try
             {
-                NHANVIEN nv = COFFEE_HOUSEEnts.NHANVIENs.SingleOrDefault(u => u.MaNV == MaNV);
+                NHANVIEN nv = COFFEE_HOUSEEnts.NHANVIEN.SingleOrDefault(u => u.MaNV == MaNV);
 
                 nv.TrangThai = 0;
 

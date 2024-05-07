@@ -20,11 +20,19 @@ namespace BLL
 
         public bool ThemQuyenTK(QuanLyQuyenTaiKhoanDTO quyenTKNew)
         {
+            QuanLyQuyenTaiKhoanDTO quyenKT = Quyen.layDSQuyenTK().SingleOrDefault(u => u.TenQuyen == quyenTKNew.TenQuyen);
+
+            if(quyenKT != null) return false;
+
             return Quyen.ThemQuyenTK(quyenTKNew);
         }
 
         public bool CapNhatQuyenTK(QuanLyQuyenTaiKhoanDTO quyenTKCapNhat)
         {
+            QuanLyQuyenTaiKhoanDTO quyenKT = Quyen.layDSQuyenTK().SingleOrDefault(u => u.TenQuyen == quyenTKCapNhat.TenQuyen);
+
+            if (quyenKT != null) return false;
+
             return Quyen.CapNhatQuyenTK(quyenTKCapNhat);
         }
 

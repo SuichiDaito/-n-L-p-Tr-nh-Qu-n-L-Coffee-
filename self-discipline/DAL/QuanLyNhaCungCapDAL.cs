@@ -13,7 +13,7 @@ namespace DAL
 
         public List<QuanLyNhaCungCapDTO> layDSNCC()
         {
-            return COFFEE_HOUSEEnts.NCCs.Select(u => new QuanLyNhaCungCapDTO
+            return COFFEE_HOUSEEnts.NCC.Select(u => new QuanLyNhaCungCapDTO
             {
                 MaNCC = u.MaNCC,
                 TenNCC = u.TenNCC,
@@ -35,7 +35,7 @@ namespace DAL
                     TrangThai = NCCNew.TrangThai
                 };
 
-                COFFEE_HOUSEEnts.NCCs.Add(ncc);
+                COFFEE_HOUSEEnts.NCC.Add(ncc);
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -49,12 +49,11 @@ namespace DAL
         {
             try
             {
-                NCC ncc = COFFEE_HOUSEEnts.NCCs.SingleOrDefault(u => u.MaNCC == NCCCapNhat.MaNCC);
+                NCC ncc = COFFEE_HOUSEEnts.NCC.SingleOrDefault(u => u.MaNCC == NCCCapNhat.MaNCC);
 
                 ncc.TenNCC = NCCCapNhat.TenNCC;
                 ncc.XuatXu = NCCCapNhat.XuatXu;
                 ncc.DiaChi = NCCCapNhat.DiaChi;
-                ncc.TrangThai = NCCCapNhat.TrangThai;
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -68,7 +67,7 @@ namespace DAL
         {
             try
             {
-                NCC ncc = COFFEE_HOUSEEnts.NCCs.SingleOrDefault(u => u.MaNCC == id);
+                NCC ncc = COFFEE_HOUSEEnts.NCC.SingleOrDefault(u => u.MaNCC == id);
                 
                 ncc.TrangThai = 0;
 

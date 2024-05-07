@@ -15,6 +15,7 @@ namespace self_discipline
     public partial class frmLoaiTaiKhoan : Form
     {
         private QuanLyLoaiTaiKhoanBLL loaiTKBLL = new QuanLyLoaiTaiKhoanBLL();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmLoaiTaiKhoan()
         {
@@ -38,6 +39,12 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenLoaiTaiKhoan.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyLoaiTaiKhoanDTO loaiTKNew = new QuanLyLoaiTaiKhoanDTO();
 
             try
@@ -93,6 +100,12 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenLoaiTaiKhoan.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyLoaiTaiKhoanDTO loaiTKCapNhat = new QuanLyLoaiTaiKhoanDTO();
 
             try
@@ -107,7 +120,12 @@ namespace self_discipline
                 return;
             }
 
-            if (loaiTKBLL.CapNhapLoaiTK(loaiTKCapNhat))
+            if (!ktTT.KiemTraLTaiKhoan(loaiTKCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if(loaiTKBLL.CapNhapLoaiTK(loaiTKCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -122,7 +140,8 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-
+            txtMaLoaiTaiKhoan.Text = string.Empty;
+            txtTenLoaiTaiKhoan.Text = string.Empty;
         }
     }
 }

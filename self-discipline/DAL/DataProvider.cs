@@ -10,7 +10,7 @@ namespace DAL
 {
     public class DataProvider
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=QuangDuc\SQLSERVER;Initial Catalog=COFFEE_HOUSE;Integrated Security=True;Encrypt=False");
+        SqlConnection conn = new SqlConnection(@"Data Source=.\sqlexpress;Initial Catalog=COFFEE_HOUSE;Integrated Security=True;Encrypt=False");
 
 
         public DataTable ExecuteSelect(string query)

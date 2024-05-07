@@ -36,8 +36,6 @@
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.txtTenLoaiBan = new System.Windows.Forms.TextBox();
             this.txtMaLoaiBan = new System.Windows.Forms.TextBox();
-            this.cbbTrangThai = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnLoad = new Guna.UI2.WinForms.Guna2Button();
@@ -69,7 +67,7 @@
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(742, 341);
+            this.guna2Panel1.Size = new System.Drawing.Size(742, 306);
             this.guna2Panel1.TabIndex = 0;
             // 
             // guna2GroupBox1
@@ -78,8 +76,6 @@
             this.guna2GroupBox1.BorderRadius = 5;
             this.guna2GroupBox1.Controls.Add(this.txtTenLoaiBan);
             this.guna2GroupBox1.Controls.Add(this.txtMaLoaiBan);
-            this.guna2GroupBox1.Controls.Add(this.cbbTrangThai);
-            this.guna2GroupBox1.Controls.Add(this.label1);
             this.guna2GroupBox1.Controls.Add(this.label3);
             this.guna2GroupBox1.Controls.Add(this.label4);
             this.guna2GroupBox1.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(169)))), ((int)(((byte)(121)))));
@@ -88,7 +84,7 @@
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(44)))), ((int)(((byte)(43)))));
             this.guna2GroupBox1.Location = new System.Drawing.Point(347, 77);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
-            this.guna2GroupBox1.Size = new System.Drawing.Size(387, 199);
+            this.guna2GroupBox1.Size = new System.Drawing.Size(387, 162);
             this.guna2GroupBox1.TabIndex = 33;
             this.guna2GroupBox1.Text = "Tuỳ chọn";
             // 
@@ -107,31 +103,6 @@
             this.txtMaLoaiBan.Name = "txtMaLoaiBan";
             this.txtMaLoaiBan.Size = new System.Drawing.Size(207, 32);
             this.txtMaLoaiBan.TabIndex = 39;
-            // 
-            // cbbTrangThai
-            // 
-            this.cbbTrangThai.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.cbbTrangThai.FormattingEnabled = true;
-            this.cbbTrangThai.Items.AddRange(new object[] {
-            "Ngưng hoạt động",
-            "Hoạt động"});
-            this.cbbTrangThai.Location = new System.Drawing.Point(154, 153);
-            this.cbbTrangThai.Name = "cbbTrangThai";
-            this.cbbTrangThai.Size = new System.Drawing.Size(207, 33);
-            this.cbbTrangThai.TabIndex = 38;
-            this.cbbTrangThai.Text = "Hoạt động";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(21, 160);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 24);
-            this.label1.TabIndex = 37;
-            this.label1.Text = "Trạng thái:";
             // 
             // label3
             // 
@@ -168,7 +139,7 @@
             this.btnLoad.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnLoad.ForeColor = System.Drawing.Color.Black;
             this.btnLoad.Image = ((System.Drawing.Image)(resources.GetObject("btnLoad.Image")));
-            this.btnLoad.Location = new System.Drawing.Point(653, 282);
+            this.btnLoad.Location = new System.Drawing.Point(653, 245);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(81, 47);
             this.btnLoad.TabIndex = 29;
@@ -186,7 +157,7 @@
             this.btnXoa.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnXoa.ForeColor = System.Drawing.Color.Black;
             this.btnXoa.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.Image")));
-            this.btnXoa.Location = new System.Drawing.Point(552, 282);
+            this.btnXoa.Location = new System.Drawing.Point(553, 245);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(81, 47);
             this.btnXoa.TabIndex = 28;
@@ -204,7 +175,7 @@
             this.btnSua.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnSua.ForeColor = System.Drawing.Color.Black;
             this.btnSua.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.Image")));
-            this.btnSua.Location = new System.Drawing.Point(450, 282);
+            this.btnSua.Location = new System.Drawing.Point(450, 245);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(81, 47);
             this.btnSua.TabIndex = 27;
@@ -223,7 +194,7 @@
             this.btnThem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnThem.ForeColor = System.Drawing.Color.Black;
             this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
-            this.btnThem.Location = new System.Drawing.Point(347, 282);
+            this.btnThem.Location = new System.Drawing.Point(347, 245);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(83, 47);
             this.btnThem.TabIndex = 26;
@@ -260,7 +231,7 @@
             this.dtgvLoaiBan.Location = new System.Drawing.Point(13, 78);
             this.dtgvLoaiBan.Name = "dtgvLoaiBan";
             this.dtgvLoaiBan.RowHeadersVisible = false;
-            this.dtgvLoaiBan.Size = new System.Drawing.Size(328, 251);
+            this.dtgvLoaiBan.Size = new System.Drawing.Size(328, 214);
             this.dtgvLoaiBan.TabIndex = 3;
             this.dtgvLoaiBan.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dtgvLoaiBan.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -328,7 +299,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(742, 341);
+            this.ClientSize = new System.Drawing.Size(742, 306);
             this.Controls.Add(this.guna2Panel1);
             this.Name = "frmLoaiBan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -360,8 +331,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colMaLoaiBan;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTenLoaiBan;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTrangThai;
-        private System.Windows.Forms.ComboBox cbbTrangThai;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTenLoaiBan;
         private System.Windows.Forms.TextBox txtMaLoaiBan;
     }

@@ -19,11 +19,19 @@ namespace BLL
 
         public bool ThemLoaiBan(QuanLyLoaiBanDTO loaiBanNew)
         {
+            QuanLyLoaiBanDTO loaiBanKT = loaiBan.layDSLoaiBan().SingleOrDefault(u => u.TenLoai == loaiBanNew.TenLoai);
+
+            if (loaiBanKT != null) return false;
+
             return loaiBan.ThemLoaiBan(loaiBanNew);
         }
 
         public bool CapNhatLoaiBan(QuanLyLoaiBanDTO loaiBanCapNhat)
         {
+            QuanLyLoaiBanDTO loaiBanKT = loaiBan.layDSLoaiBan().SingleOrDefault(u => u.TenLoai == loaiBanCapNhat.TenLoai);
+
+            if (loaiBanKT != null) return false;
+
             return loaiBan.CapNhatLoaiBan(loaiBanCapNhat);
         }
 

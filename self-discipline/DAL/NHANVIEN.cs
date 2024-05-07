@@ -17,9 +17,9 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NHANVIEN()
         {
-            this.DONNHAPHANGs = new HashSet<DONNHAPHANG>();
-            this.HOADONs = new HashSet<HOADON>();
-            this.TAIKHOANs = new HashSet<TAIKHOAN>();
+            this.DONNHAPHANG = new HashSet<DONNHAPHANG>();
+            this.HOADON = new HashSet<HOADON>();
+            this.TAIKHOAN = new HashSet<TAIKHOAN>();
         }
     
         public int MaNV { get; set; }
@@ -34,10 +34,10 @@ namespace DAL
         public int TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DONNHAPHANG> DONNHAPHANGs { get; set; }
+        public virtual ICollection<DONNHAPHANG> DONNHAPHANG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOADON> HOADONs { get; set; }
+        public virtual ICollection<HOADON> HOADON { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
+        public virtual ICollection<TAIKHOAN> TAIKHOAN { get; set; }
     }
 }

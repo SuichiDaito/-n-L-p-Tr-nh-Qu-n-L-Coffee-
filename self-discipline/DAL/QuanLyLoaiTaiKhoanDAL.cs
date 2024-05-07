@@ -47,7 +47,6 @@ namespace DAL
                 LOAI_TAIKHOAN loaiTK = COFFEE_HOUSEEnts.LOAI_TAIKHOAN.SingleOrDefault(u => u.MaLoai == loaiTKCapNhat.MaLoai);
 
                 loaiTK.TenLoai = loaiTKCapNhat.TenLoai;
-                loaiTK.TrangThai = loaiTKCapNhat.TrangThai;
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }

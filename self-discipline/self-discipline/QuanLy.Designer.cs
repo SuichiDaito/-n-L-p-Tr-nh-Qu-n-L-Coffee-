@@ -41,6 +41,8 @@
             this.btnBanHang = new Guna.UI2.WinForms.Guna2Button();
             this.btnThongTin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTenNVDangNhap = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
@@ -210,6 +212,8 @@
             // 
             this.guna2Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.guna2Panel1.Controls.Add(this.lblTenNVDangNhap);
+            this.guna2Panel1.Controls.Add(this.label2);
             this.guna2Panel1.Controls.Add(this.btnThongTin);
             this.guna2Panel1.Controls.Add(this.btnBieuDo);
             this.guna2Panel1.Controls.Add(this.btnThongKe);
@@ -220,6 +224,30 @@
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Size = new System.Drawing.Size(280, 671);
             this.guna2Panel1.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 642);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Thành viên:";
+            // 
+            // lblTenNVDangNhap
+            // 
+            this.lblTenNVDangNhap.AutoSize = true;
+            this.lblTenNVDangNhap.BackColor = System.Drawing.Color.Transparent;
+            this.lblTenNVDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenNVDangNhap.ForeColor = System.Drawing.Color.White;
+            this.lblTenNVDangNhap.Location = new System.Drawing.Point(99, 642);
+            this.lblTenNVDangNhap.Name = "lblTenNVDangNhap";
+            this.lblTenNVDangNhap.Size = new System.Drawing.Size(117, 20);
+            this.lblTenNVDangNhap.TabIndex = 6;
+            this.lblTenNVDangNhap.Text = " Tên thành viên";
             // 
             // frmQuanLy
             // 
@@ -240,6 +268,7 @@
             this.guna2Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
+            this.guna2Panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -258,5 +287,7 @@
         private Guna.UI2.WinForms.Guna2Button btnThongTin;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTenNVDangNhap;
     }
 }
