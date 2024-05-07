@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace self_discipline
     public partial class frmKhuyenMai : Form
     {
         private QuanLyKhuyenMaiBLL kmBLL = new QuanLyKhuyenMaiBLL();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmKhuyenMai()
         {
@@ -43,7 +45,14 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenKM.Text) || string.IsNullOrEmpty(txtMoTa.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyKhuyenMaiDTO kmNew = new QuanLyKhuyenMaiDTO();
+            DateTime now = DateTime.Now;
 
             try
             {
@@ -54,6 +63,12 @@ namespace self_discipline
                 kmNew.NgayKetThuc = (DateTime)dtpNgayKetThuc.Value;
                 kmNew.MoTa = txtMoTa.Text;
                 kmNew.TrangThai = 1;
+
+                if(kmNew.NgayBatDau > now || kmNew.NgayKetThuc > now)
+                {
+                    MessageBox.Show("Ngày bắt đầu và kết thúc không được vượt quá ngày hiện tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -76,7 +91,14 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenKM.Text) || string.IsNullOrEmpty(txtMoTa.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyKhuyenMaiDTO kmCapNhat = new QuanLyKhuyenMaiDTO();
+            DateTime now = DateTime.Now;
 
             try
             {
@@ -87,7 +109,12 @@ namespace self_discipline
                 kmCapNhat.NgayBatDau = (DateTime)dtpNgayBatDau.Value;
                 kmCapNhat.NgayKetThuc = (DateTime)dtpNgayKetThuc.Value;
                 kmCapNhat.MoTa = txtMoTa.Text;
-                kmCapNhat.TrangThai = 1;
+
+                if (kmCapNhat.NgayBatDau > now || kmCapNhat.NgayKetThuc > now)
+                {
+                    MessageBox.Show("Ngày bắt đầu và kết thúc không được vượt quá ngày hiện tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -95,7 +122,12 @@ namespace self_discipline
                 return;
             }
 
-            if (kmBLL.CapNhatKhuyenMai(kmCapNhat))
+            if (!ktTT.KiemTraKM(kmCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (kmBLL.CapNhatKhuyenMai(kmCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -137,7 +169,13 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            frmKhuyenMai_Load(sender, e);
+            txtMaGG.Text = string.Empty;
+            txtMoTa.Text = string.Empty;
+            txtTenKM.Text = string.Empty;
+            nbrPhanTram.Value = 0;
+            nbrSL.Value = 0;
+            dtpNgayBatDau.Value = DateTime.Now;
+            dtpNgayKetThuc.Value = DateTime.Now;
         }
     }
 }

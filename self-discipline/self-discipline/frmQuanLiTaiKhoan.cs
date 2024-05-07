@@ -18,15 +18,13 @@ namespace self_discipline
         private QuanLyLoaiTaiKhoanBLL loaiTK = new QuanLyLoaiTaiKhoanBLL();
         private QuanLyQuyenTaiKhoanBLL quyenTK = new QuanLyQuyenTaiKhoanBLL();
         private md5 md5 = new md5();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmQuanLiTaiKhoan()
         {
             InitializeComponent();
             dtgvQuanLyTaiKhoan.AutoGenerateColumns = false;
-        }
 
-        private void frmQuanLiTaiKhoan_Load(object sender, EventArgs e)
-        {
             cbbLoaiTK.DataSource = loaiTK.layDSLoaiTK();
             cbbLoaiTK.DisplayMember = "TenLoai";
             cbbLoaiTK.ValueMember = "MaLoai";
@@ -42,7 +40,10 @@ namespace self_discipline
             colQuyen_TaiKhoan.DataSource = quyenTK.layDSQuyenTK();
             colQuyen_TaiKhoan.DisplayMember = "TenQuyen";
             colQuyen_TaiKhoan.ValueMember = "MaQuyen";
+        }
 
+        private void frmQuanLiTaiKhoan_Load(object sender, EventArgs e)
+        {
             dtgvQuanLyTaiKhoan.DataSource = taiKhoanBLL.layDSTK();
         }
 
@@ -61,6 +62,14 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrEmpty(txtMaNV.Text) || string.IsNullOrEmpty(txtUsername.Text) 
+                || string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrEmpty(cbbLoaiTK.Text) 
+                || string.IsNullOrEmpty(cbbQuyen.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             TaiKhoanDTO tkNew = new TaiKhoanDTO();
 
             try
@@ -120,6 +129,14 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtMaNV.Text) || string.IsNullOrEmpty(txtUsername.Text)
+               || string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrEmpty(cbbLoaiTK.Text)
+               || string.IsNullOrEmpty(cbbQuyen.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             TaiKhoanDTO tkCapNhat = new TaiKhoanDTO();
 
             try
@@ -138,7 +155,12 @@ namespace self_discipline
                 return;
             }
 
-            if (taiKhoanBLL.CapNhapTaiKhoan(tkCapNhat))
+            if (!ktTT.KiemTraTaiKhoan(tkCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (taiKhoanBLL.CapNhapTaiKhoan(tkCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -153,7 +175,12 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            frmQuanLiTaiKhoan_Load(sender, e);
+            txtMaTK.Text = string.Empty;
+            txtMaNV.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+            txtUsername.Text = string.Empty;
+            cbbLoaiTK.SelectedItem = null;
+            cbbQuyen.SelectedItem = null;
         }
     }
 }

@@ -14,7 +14,8 @@ namespace self_discipline
 {
     public partial class frmQuanLiNhaCungCap : Form
     {
-        QuanLyNhaCungCapBLL nCCBLL = new QuanLyNhaCungCapBLL();
+        private QuanLyNhaCungCapBLL nCCBLL = new QuanLyNhaCungCapBLL();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmQuanLiNhaCungCap()
         {
@@ -40,6 +41,12 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrEmpty(txtTenNCC.Text) || string.IsNullOrEmpty(txtXuatXu.Text) || string.IsNullOrEmpty(txtDiaChi.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyNhaCungCapDTO nCCNew = new QuanLyNhaCungCapDTO();
 
             try
@@ -70,6 +77,12 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenNCC.Text) || string.IsNullOrEmpty(txtXuatXu.Text) || string.IsNullOrEmpty(txtDiaChi.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyNhaCungCapDTO nCCCapNhat = new QuanLyNhaCungCapDTO();
 
             try
@@ -78,7 +91,6 @@ namespace self_discipline
                 nCCCapNhat.TenNCC = txtTenNCC.Text;
                 nCCCapNhat.XuatXu = txtXuatXu.Text;
                 nCCCapNhat.DiaChi = txtDiaChi.Text;
-                nCCCapNhat.TrangThai = 1;
             }
             catch (Exception ex)
             {
@@ -86,7 +98,12 @@ namespace self_discipline
                 return;
             }
 
-            if (nCCBLL.CapNhatNhaCungCap(nCCCapNhat))
+            if (!ktTT.KiemTraNhaCungCap(nCCCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (nCCBLL.CapNhatNhaCungCap(nCCCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -128,7 +145,10 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            frmQuanLiNhaCungCap_Load(sender, e);
+            txtTenNCC.Text = string.Empty;
+            txtMaNCC.Text = string.Empty;
+            txtDiaChi.Text = string.Empty;
+            txtXuatXu.Text = string.Empty;
         }
     }
 }

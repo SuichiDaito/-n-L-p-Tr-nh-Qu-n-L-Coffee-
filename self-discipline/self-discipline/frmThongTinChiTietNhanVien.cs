@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using BLL;
 using DTO;
@@ -15,6 +17,8 @@ namespace self_discipline
     public partial class frmQuanLiNhanVien : Form
     {
         private ThongTinNhanVienBLL nvBLL = new ThongTinNhanVienBLL();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
+        private TaiKhoanBLL tkBLL = new TaiKhoanBLL();
 
         public frmQuanLiNhanVien()
         {
@@ -40,13 +44,22 @@ namespace self_discipline
                 dtpNgaySinh.Value = (DateTime)dtgvQLNV.Rows[e.RowIndex].Cells[6].Value;
                 txtSDT.Text = dtgvQLNV.Rows[e.RowIndex].Cells[7].Value.ToString();
                 txtDiaChi.Text = dtgvQLNV.Rows[e.RowIndex].Cells[8].Value.ToString();
-                cbbTrangThai.SelectedIndex = (int)dtgvQLNV.Rows[e.RowIndex].Cells[9].Value;
             }
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrEmpty(txtHo.Text) || string.IsNullOrEmpty(txtTen.Text) 
+                || string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtChucVu.Text)  
+                || string.IsNullOrEmpty(txtSDT.Text) || string.IsNullOrEmpty(txtDiaChi.Text)
+                || string.IsNullOrEmpty(cbbPhai.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             NhanVienDTO nhanVienNew = new NhanVienDTO();
+            DateTime now = DateTime.Now;
 
             try
             {
@@ -59,6 +72,12 @@ namespace self_discipline
                 nhanVienNew.Email = txtEmail.Text;
                 nhanVienNew.DiaChi = txtDiaChi.Text;
                 nhanVienNew.TrangThai = 1;
+
+                if(now.Year - nhanVienNew.NgaySinh.Year < 18)
+                {
+                    MessageBox.Show("Tuổi phải lớn hơn 18!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -82,7 +101,11 @@ namespace self_discipline
         private void btnXoa_Click(object sender, EventArgs e)
         {
             int id;
-
+            frmDangNhap frmDangNhap = Application.OpenForms.OfType<frmDangNhap>().FirstOrDefault();
+            string username = frmDangNhap.Username;
+            TaiKhoanDTO tk = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username);
+            NhanVienDTO nv = nvBLL.LayDsNhanVien().SingleOrDefault(u => u.MaNV == tk.MaNV);
+            
             try
             {
                 id = Convert.ToInt32(txtMaNV.Text);
@@ -93,7 +116,12 @@ namespace self_discipline
                 return;
             }
 
-            if (nvBLL.XoaNhanVien(id))
+            if(nv != null)
+            {
+                MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (nvBLL.XoaNhanVien(id))
             {
                 MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -108,7 +136,17 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtHo.Text) || string.IsNullOrEmpty(txtTen.Text)
+              || string.IsNullOrEmpty(txtEmail.Text) || string.IsNullOrEmpty(txtChucVu.Text)
+              || string.IsNullOrEmpty(txtSDT.Text) || string.IsNullOrEmpty(txtDiaChi.Text)
+              || string.IsNullOrEmpty(cbbPhai.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             NhanVienDTO nhanVienCapNhat = new NhanVienDTO();
+            DateTime now = DateTime.Now;
 
             try
             {
@@ -121,7 +159,12 @@ namespace self_discipline
                 nhanVienCapNhat.SDT = txtSDT.Text;
                 nhanVienCapNhat.Email = txtEmail.Text;
                 nhanVienCapNhat.DiaChi = txtDiaChi.Text;
-                nhanVienCapNhat.TrangThai = cbbTrangThai.SelectedIndex;
+
+                if (now.Year - nhanVienCapNhat.NgaySinh.Year < 18)
+                {
+                    MessageBox.Show("Tuổi phải lớn hơn 18!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -129,7 +172,12 @@ namespace self_discipline
                 return;
             }
 
-            if (nvBLL.CapNhatNhanVien(nhanVienCapNhat))
+            if (!ktTT.KiemTraNhanVien(nhanVienCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (nvBLL.CapNhatNhanVien(nhanVienCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -144,7 +192,15 @@ namespace self_discipline
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
-            frmQuanLiNhanVien_Load(sender, e);
+            txtMaNV.Text = string.Empty;
+            txtTen.Text = string.Empty;
+            txtSDT.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtDiaChi.Text = string.Empty;
+            txtHo.Text = string.Empty;
+            txtChucVu.Text = string.Empty;
+            cbbPhai.SelectedItem = null;
+            dtpNgaySinh.Value = DateTime.Now;
         }
     }
 }

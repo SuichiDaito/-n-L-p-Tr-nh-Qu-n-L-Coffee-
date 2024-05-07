@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DAL.COFFEE_HOUSEDataSet;
 
 namespace BLL
 {
@@ -19,11 +20,19 @@ namespace BLL
 
         public bool ThemNguyenLieu(QuanLyNguyenLieuDTO nguyenLieuNew)
         {
+            QuanLyNguyenLieuDTO nLKT = NLDAL.layDSNL().SingleOrDefault(u => u.TenNL == nguyenLieuNew.TenNL);
+
+            if(nLKT != null) return false;
+
             return NLDAL.ThemNguyenLieu(nguyenLieuNew);
         }
 
         public bool CapNhatNguyenLieu(QuanLyNguyenLieuDTO nguyenLieuCapNhat)
         {
+            QuanLyNguyenLieuDTO nLKT = NLDAL.layDSNL().SingleOrDefault(u => u.TenNL == nguyenLieuCapNhat.TenNL);
+
+            if (nLKT != null) return false;
+
             return NLDAL.CapNhatNguyenLieu(nguyenLieuCapNhat);
         }
 

@@ -156,7 +156,7 @@
             this.btnXoa.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnXoa.ForeColor = System.Drawing.Color.Black;
             this.btnXoa.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.Image")));
-            this.btnXoa.Location = new System.Drawing.Point(465, 242);
+            this.btnXoa.Location = new System.Drawing.Point(456, 243);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(92, 47);
             this.btnXoa.TabIndex = 28;
@@ -174,7 +174,7 @@
             this.btnCapNhat.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnCapNhat.ForeColor = System.Drawing.Color.Black;
             this.btnCapNhat.Image = ((System.Drawing.Image)(resources.GetObject("btnCapNhat.Image")));
-            this.btnCapNhat.Location = new System.Drawing.Point(572, 242);
+            this.btnCapNhat.Location = new System.Drawing.Point(567, 242);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(92, 47);
             this.btnCapNhat.TabIndex = 27;
@@ -193,7 +193,7 @@
             this.btnThem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnThem.ForeColor = System.Drawing.Color.Black;
             this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
-            this.btnThem.Location = new System.Drawing.Point(356, 242);
+            this.btnThem.Location = new System.Drawing.Point(347, 243);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(92, 47);
             this.btnThem.TabIndex = 26;

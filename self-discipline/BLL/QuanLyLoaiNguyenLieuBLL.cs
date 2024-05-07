@@ -20,11 +20,19 @@ namespace BLL
 
         public bool ThemLoaiNL(QuanLyLoaiNguyenLieuDTO loaiNLNew)
         {
+            QuanLyLoaiNguyenLieuDTO loaiNLKT = loaiNL.layDSLoaiNL().SingleOrDefault(u => u.TenLoai == loaiNLNew.TenLoai);
+
+            if(loaiNLKT != null) return false;
+
             return loaiNL.ThemLoaiNL(loaiNLNew);
         }
 
         public bool CapNhatLoaiNL(QuanLyLoaiNguyenLieuDTO loaiNLCapNhat)
         {
+            QuanLyLoaiNguyenLieuDTO loaiNLKT = loaiNL.layDSLoaiNL().SingleOrDefault(u => u.TenLoai == loaiNLCapNhat.TenLoai);
+
+            if (loaiNLKT != null) return false;
+
             return loaiNL.CapNhatLoaiNL(loaiNLCapNhat);
         }
 

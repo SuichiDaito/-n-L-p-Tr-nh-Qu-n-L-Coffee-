@@ -25,21 +25,22 @@ namespace DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BAN> BANs { get; set; }
-        public virtual DbSet<CTHD> CTHDs { get; set; }
-        public virtual DbSet<CTPHIEUNHAP> CTPHIEUNHAPs { get; set; }
-        public virtual DbSet<DONNHAPHANG> DONNHAPHANGs { get; set; }
-        public virtual DbSet<HOADON> HOADONs { get; set; }
-        public virtual DbSet<KHUYENMAI> KHUYENMAIs { get; set; }
+        public virtual DbSet<BAN> BAN { get; set; }
+        public virtual DbSet<CTPHIEUNHAP> CTPHIEUNHAP { get; set; }
+        public virtual DbSet<CTHD> CTHD { get; set; }
+        public virtual DbSet<DONNHAPHANG> DONNHAPHANG { get; set; }
+        public virtual DbSet<HOADON> HOADON { get; set; }
+        public virtual DbSet<KHUYENMAI> KHUYENMAI { get; set; }
         public virtual DbSet<LOAI_BAN> LOAI_BAN { get; set; }
         public virtual DbSet<LOAI_NGUYENLIEU> LOAI_NGUYENLIEU { get; set; }
         public virtual DbSet<LOAI_SANPHAM> LOAI_SANPHAM { get; set; }
         public virtual DbSet<LOAI_TAIKHOAN> LOAI_TAIKHOAN { get; set; }
-        public virtual DbSet<NCC> NCCs { get; set; }
-        public virtual DbSet<NGUYENLIEU> NGUYENLIEUx { get; set; }
-        public virtual DbSet<NHANVIEN> NHANVIENs { get; set; }
-        public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
-        public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
+        public virtual DbSet<NCC> NCC { get; set; }
+        public virtual DbSet<NGUYENLIEU> NGUYENLIEU { get; set; }
+        public virtual DbSet<NHANVIEN> NHANVIEN { get; set; }
+        public virtual DbSet<SANPHAM> SANPHAM { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TAIKHOAN> TAIKHOAN { get; set; }
         public virtual DbSet<TK_QUYEN> TK_QUYEN { get; set; }
     }
 }

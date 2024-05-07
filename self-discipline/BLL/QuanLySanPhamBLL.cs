@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DTO;
 using DAL;
 using System.Data;
+using static DAL.COFFEE_HOUSEDataSet;
 
 namespace BLL
 {
@@ -21,11 +22,19 @@ namespace BLL
 
         public bool ThemSanPham(QuanLySanPhamDTO sanPhamNew)
         {
+            QuanLySanPhamDTO spKT = spDAL.layDSSP().SingleOrDefault(u => u.TenSP == sanPhamNew.TenSP);
+
+            if (spKT != null) return false;
+
             return spDAL.ThemSanPham(sanPhamNew);
         }
 
         public bool CapNhatSanPham(QuanLySanPhamDTO sanPhamCapNhat)
         {
+            QuanLySanPhamDTO spKT = spDAL.layDSSP().SingleOrDefault(u => u.TenSP == sanPhamCapNhat.TenSP);
+
+            if (spKT != null) return false;
+
             return spDAL.CapNhatSanPham(sanPhamCapNhat);
         }
 
@@ -33,6 +42,7 @@ namespace BLL
         {
             return spDAL.XoaSanPham(id);
         }
+
         public DataTable LayDS()
         {
             DataTable table = new DataTable();

@@ -48,7 +48,6 @@ namespace DAL
                 LOAI_NGUYENLIEU loaiNL = COFFEE_HOUSEEnts.LOAI_NGUYENLIEU.SingleOrDefault(u => u.MaLoai == loaiNLCapNhat.MaLoai);
 
                 loaiNL.Tenloai = loaiNLCapNhat.TenLoai;
-                loaiNL.TrangThai = loaiNLCapNhat.TrangThai;
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }

@@ -14,7 +14,7 @@ namespace DAL
 
         public List<QuanLyKhuyenMaiDTO> layDSKM()
         {
-            return COFFEE_HOUSEEnts.KHUYENMAIs.Select(u => new QuanLyKhuyenMaiDTO
+            return COFFEE_HOUSEEnts.KHUYENMAI.Select(u => new QuanLyKhuyenMaiDTO
             {
                 MaGiamGia = u.MaGiamGia,
                 TenMaGiamGia = u.TenMaGiamGia,
@@ -42,7 +42,7 @@ namespace DAL
                     TrangThai = khuyenMaiNew.TrangThai
                 };
 
-                COFFEE_HOUSEEnts.KHUYENMAIs.Add(km);
+                COFFEE_HOUSEEnts.KHUYENMAI.Add(km);
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -56,7 +56,7 @@ namespace DAL
         {
             try
             {
-                KHUYENMAI km = COFFEE_HOUSEEnts.KHUYENMAIs.SingleOrDefault(u => u.MaGiamGia == khuyenMaiCapNhat.MaGiamGia);
+                KHUYENMAI km = COFFEE_HOUSEEnts.KHUYENMAI.SingleOrDefault(u => u.MaGiamGia == khuyenMaiCapNhat.MaGiamGia);
 
                 km.TenMaGiamGia = khuyenMaiCapNhat.TenMaGiamGia;
                 km.PhanTram = khuyenMaiCapNhat.PhanTram;
@@ -64,7 +64,6 @@ namespace DAL
                 km.NgayBatDau = khuyenMaiCapNhat.NgayBatDau;
                 km.NgayKetThuc = khuyenMaiCapNhat.NgayKetThuc;
                 km.Mota = khuyenMaiCapNhat.MoTa;
-                km.TrangThai = khuyenMaiCapNhat.TrangThai;
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -78,7 +77,7 @@ namespace DAL
         {
             try
             {
-                KHUYENMAI km = COFFEE_HOUSEEnts.KHUYENMAIs.SingleOrDefault(u => u.MaGiamGia == id);
+                KHUYENMAI km = COFFEE_HOUSEEnts.KHUYENMAI.SingleOrDefault(u => u.MaGiamGia == id);
 
                 km.TrangThai = 0;
 

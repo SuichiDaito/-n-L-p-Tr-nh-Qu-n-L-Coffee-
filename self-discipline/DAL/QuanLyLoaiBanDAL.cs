@@ -17,7 +17,6 @@ namespace DAL
             {
                 MaLoai = u.MaLoai,
                 TenLoai = u.TenLoai,
-                TrangThai = u.TrangThai,
             }).Where(v => v.TrangThai == 1).ToList();
         }
 
@@ -28,7 +27,7 @@ namespace DAL
                 LOAI_BAN loaiBan = new LOAI_BAN()
                 {
                     TenLoai = loaiBanNew.TenLoai,
-                    TrangThai = loaiBanNew.TrangThai
+                    TrangThai = loaiBanNew.TrangThai,
                 };
 
                 COFFEE_HOUSEEnts.LOAI_BAN.Add(loaiBan);
@@ -48,7 +47,6 @@ namespace DAL
                 LOAI_BAN loaiBan = COFFEE_HOUSEEnts.LOAI_BAN.SingleOrDefault(u => u.MaLoai == loaiBanCapNhat.MaLoai);
 
                 loaiBan.TenLoai = loaiBanCapNhat.TenLoai;
-                loaiBan.TrangThai = loaiBanCapNhat.TrangThai;
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }

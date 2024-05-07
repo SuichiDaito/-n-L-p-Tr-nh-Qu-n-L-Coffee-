@@ -19,11 +19,19 @@ namespace BLL
 
         public bool ThemLoaiSP(QuanLyLoaiSanPhamDTO loaiSPNew)
         {
+            QuanLyLoaiSanPhamDTO loaiSPKT = loaiSP.layDSLSP().SingleOrDefault(u => u.TenLoai == loaiSPNew.TenLoai);
+
+            if (loaiSPKT != null) return false;
+
             return loaiSP.ThemLoaiSanPham(loaiSPNew);
         }
 
         public bool CapNhatLoaiSP(QuanLyLoaiSanPhamDTO loaiSPCapNhat)
         {
+            QuanLyLoaiSanPhamDTO loaiSPKT = loaiSP.layDSLSP().SingleOrDefault(u => u.TenLoai == loaiSPCapNhat.TenLoai);
+
+            if (loaiSPKT != null) return false;
+
             return loaiSP.CapNhatLoaiSP(loaiSPCapNhat);
         }
 

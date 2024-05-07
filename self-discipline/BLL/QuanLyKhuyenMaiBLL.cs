@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
+using static DAL.COFFEE_HOUSEDataSet;
 
 namespace BLL
 {
@@ -19,11 +20,19 @@ namespace BLL
 
         public bool ThemKhuyenMai(QuanLyKhuyenMaiDTO khuyenMaiNew)
         {
+            QuanLyKhuyenMaiDTO kmKT = kmDAL.layDSKM().SingleOrDefault(u => u.TenMaGiamGia == khuyenMaiNew.TenMaGiamGia);
+
+            if (kmKT != null) return false;
+
             return kmDAL.ThemKhuyenMai(khuyenMaiNew);
         }
 
         public bool CapNhatKhuyenMai(QuanLyKhuyenMaiDTO khuyenMaiCapNhat)
         {
+            QuanLyKhuyenMaiDTO kmKT = kmDAL.layDSKM().SingleOrDefault(u => u.TenMaGiamGia == khuyenMaiCapNhat.TenMaGiamGia);
+
+            if (kmKT != null) return false;
+
             return kmDAL.CapNhatKhuyenMai(khuyenMaiCapNhat);
         }
 

@@ -40,7 +40,7 @@ namespace self_discipline
             TaiKhoanDTO ttTK = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username);
             NhanVienDTO nv = nvBLL.LayDsNhanVien().Single(u => u.MaNV == ttTK.MaNV);
 
-            string hoTen = nv.Ho.ToString() + nv.Ten.ToString();
+            string hoTen = nv.Ho + " " + nv.Ten;
 
             lblHoTen.Text = hoTen;
             lblGioiTinh.Text = nv.Phai;

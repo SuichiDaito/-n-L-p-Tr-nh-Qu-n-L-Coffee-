@@ -18,15 +18,13 @@ namespace self_discipline
         private QuanLyNguyenLieuBLL nLBLL = new QuanLyNguyenLieuBLL();
         private QuanLyNhaCungCapBLL nCCBLL = new QuanLyNhaCungCapBLL();
         private QuanLyLoaiNguyenLieuBLL loaiNLBLL = new QuanLyLoaiNguyenLieuBLL();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmQuanLiNguyenLieu()
         {
             InitializeComponent();
             dtgvQLNL.AutoGenerateColumns = false;
-        }
 
-        private void frmQuanLiNguyenLieu_Load(object sender, EventArgs e)
-        {
             colMaNCC.DataSource = nCCBLL.layDSNCC();
             colMaNCC.DisplayMember = "TenNCC";
             colMaNCC.ValueMember = "MaNCC";
@@ -42,7 +40,10 @@ namespace self_discipline
             cbbTenLoaiNL.DataSource = loaiNLBLL.layDSLoaiNL();
             cbbTenLoaiNL.DisplayMember = "TenLoai";
             cbbTenLoaiNL.ValueMember = "MaLoai";
+        }
 
+        private void frmQuanLiNguyenLieu_Load(object sender, EventArgs e)
+        {
             dtgvQLNL.DataSource = nLBLL.layDSNL();
         }
 
@@ -61,6 +62,13 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrEmpty(txtTenNL.Text) || string.IsNullOrEmpty(txtDVT.Text) 
+                || string.IsNullOrEmpty(cbbTenLoaiNL.Text) || string.IsNullOrEmpty(cbbTenNCC.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyNguyenLieuDTO nlNew = new QuanLyNguyenLieuDTO();
 
             try
@@ -93,6 +101,13 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenNL.Text) || string.IsNullOrEmpty(txtDVT.Text)
+               || string.IsNullOrEmpty(cbbTenLoaiNL.Text) || string.IsNullOrEmpty(cbbTenNCC.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyNguyenLieuDTO nlCapNhat = new QuanLyNguyenLieuDTO();
 
             try
@@ -111,7 +126,12 @@ namespace self_discipline
                 return;
             }
 
-            if (nLBLL.CapNhatNguyenLieu(nlCapNhat))
+            if (!ktTT.KiemTraNguyenLieu(nlCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (nLBLL.CapNhatNguyenLieu(nlCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -153,7 +173,12 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-
+            txtMaNL.Text = string.Empty;
+            txtTenNL.Text = string.Empty;
+            txtDVT.Text = string.Empty;
+            cbbTenLoaiNL.SelectedItem = null;
+            cbbTenNCC.SelectedItem = null;
+            nbrSLTon.Value = 0;
         }
     }
 }

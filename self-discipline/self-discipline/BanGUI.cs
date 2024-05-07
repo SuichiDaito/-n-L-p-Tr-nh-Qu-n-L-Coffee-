@@ -21,10 +21,7 @@ namespace self_discipline
         {
             InitializeComponent();
             dtgvQuanLyBan.AutoGenerateColumns = false;
-        }
 
-        private void frmBan_Load(object sender, EventArgs e)
-        {
             ColLoaiBan.DataSource = loaiBanBLL.layDSLoaiBan();
             ColLoaiBan.DisplayMember = "TenLoai";
             ColLoaiBan.ValueMember = "MaLoai";
@@ -32,7 +29,10 @@ namespace self_discipline
             cbbLoaiBan.DataSource = loaiBanBLL.layDSLoaiBan();
             cbbLoaiBan.DisplayMember = "TenLoai";
             cbbLoaiBan.ValueMember = "MaLoai";
+        }
 
+        private void frmBan_Load(object sender, EventArgs e)
+        {
             dtgvQuanLyBan.DataSource = banBLL.layDSBan();
         }
 
@@ -48,6 +48,12 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (cbbTrangThai.SelectedValue == null)
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyBanDTO banNew = new QuanLyBanDTO();
 
             try
@@ -132,7 +138,9 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            frmBan_Load(sender, e);
+            txtMaBan.Text = string.Empty;
+            cbbLoaiBan.SelectedIndex = 0;
+            cbbTrangThai.SelectedIndex = 0;
         }
 
         private void btnLoaiBan_Click(object sender, EventArgs e)

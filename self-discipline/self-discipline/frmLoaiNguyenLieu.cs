@@ -15,6 +15,7 @@ namespace self_discipline
     public partial class frmLoaiNguyenLieu : Form
     {
         private QuanLyLoaiNguyenLieuBLL loaiNLBLL = new QuanLyLoaiNguyenLieuBLL();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmLoaiNguyenLieu()
         {
@@ -38,6 +39,12 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenLoaiNguyenLieu.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyLoaiNguyenLieuDTO loaiNLNew = new QuanLyLoaiNguyenLieuDTO();
 
             try
@@ -93,13 +100,18 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenLoaiNguyenLieu.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyLoaiNguyenLieuDTO loaiNLCapNhat = new QuanLyLoaiNguyenLieuDTO();
 
             try
             {
                 loaiNLCapNhat.MaLoai = Convert.ToInt32(txtMaLoaiNguyenLieu.Text);
                 loaiNLCapNhat.TenLoai = txtTenLoaiNguyenLieu.Text;
-                loaiNLCapNhat.TrangThai = 1;
             }
             catch (Exception ex)
             {
@@ -107,7 +119,12 @@ namespace self_discipline
                 return;
             }
 
-            if (loaiNLBLL.CapNhatLoaiNL(loaiNLCapNhat))
+            if (!ktTT.KiemTraLNguyenLieu(loaiNLCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (loaiNLBLL.CapNhatLoaiNL(loaiNLCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -122,7 +139,8 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            frmLoaiNguyenLieu_Load(sender, e);
+            txtMaLoaiNguyenLieu.Text = string.Empty;
+            txtTenLoaiNguyenLieu.Text = string.Empty;
         }
     }
 }

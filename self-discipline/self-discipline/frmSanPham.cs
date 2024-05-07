@@ -16,15 +16,13 @@ namespace self_discipline
     {
         private QuanLySanPhamBLL spBLL = new QuanLySanPhamBLL();
         private QuanLyLoaiSanPhamBLL loaiSP = new QuanLyLoaiSanPhamBLL();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmSanPham()
         {
             InitializeComponent();
             dtgvQLSP.AutoGenerateColumns = false;
-        }
 
-        private void frmSanPham_Load(object sender, EventArgs e)
-        {
             colLoaiSP.DataSource = loaiSP.layDSLoaiSP();
             colLoaiSP.DisplayMember = "TenLoai";
             colLoaiSP.ValueMember = "MaLoai";
@@ -32,7 +30,10 @@ namespace self_discipline
             cbbLoaiSP.DataSource = loaiSP.layDSLoaiSP();
             cbbLoaiSP.DisplayMember = "TenLoai";
             cbbLoaiSP.ValueMember = "MaLoai";
+        }
 
+        private void frmSanPham_Load(object sender, EventArgs e)
+        {
             dtgvQLSP.DataSource = spBLL.layDSSP();
         }
 
@@ -49,6 +50,12 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if(string.IsNullOrEmpty(txtTenSP.Text) || string.IsNullOrEmpty(cbbLoaiSP.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLySanPhamDTO spNew = new QuanLySanPhamDTO();
 
             try
@@ -79,6 +86,12 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenSP.Text) || string.IsNullOrEmpty(cbbLoaiSP.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLySanPhamDTO spCapNhat = new QuanLySanPhamDTO();
 
             try
@@ -87,7 +100,6 @@ namespace self_discipline
                 spCapNhat.TenSP = txtTenSP.Text;
                 spCapNhat.LoaiSP = (int)cbbLoaiSP.SelectedValue;
                 spCapNhat.GiaBan = (int)nbrGiaBan.Value;
-                spCapNhat.TrangThai = 1;
             }
             catch (Exception ex)
             {
@@ -95,7 +107,12 @@ namespace self_discipline
                 return;
             }
 
-            if (spBLL.CapNhatSanPham(spCapNhat))
+            if (!ktTT.KiemTraSanPham(spCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (spBLL.CapNhatSanPham(spCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -137,7 +154,10 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            frmSanPham_Load(sender, e);
+            txtMaSP.Text = string.Empty;
+            txtTenSP.Text = string.Empty;
+            cbbLoaiSP.SelectedItem = null;
+            nbrGiaBan.Value = 0;
         }
     }
 }

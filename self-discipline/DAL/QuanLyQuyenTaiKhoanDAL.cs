@@ -47,7 +47,6 @@ namespace DAL
                 TK_QUYEN quyenTK = COFFEE_HOUSEEnts.TK_QUYEN.SingleOrDefault(u => u.MaQuyen == quyenTKCapNhat.MaQuyen);
 
                 quyenTK.TenQuyen = quyenTKCapNhat.TenQuyen;
-                quyenTK.TrangThai = quyenTKCapNhat.TrangThai;
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }

@@ -15,6 +15,7 @@ namespace self_discipline
     public partial class frmQuanLiQuyenTaiKhoan : Form
     {
         private QuanLyQuyenTaiKhoanBLL quyenBLL = new QuanLyQuyenTaiKhoanBLL();
+        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmQuanLiQuyenTaiKhoan()
         {
@@ -38,6 +39,12 @@ namespace self_discipline
 
         private void btnThem_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenQuyen.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
             QuanLyQuyenTaiKhoanDTO quyenNew = new QuanLyQuyenTaiKhoanDTO();
 
             try
@@ -66,20 +73,31 @@ namespace self_discipline
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtTenQuyen.Text))
+            {
+                MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             QuanLyQuyenTaiKhoanDTO quyenCapNhat = new QuanLyQuyenTaiKhoanDTO();
 
             try
             {
                 quyenCapNhat.MaQuyen = Convert.ToInt32(txtMaQuyen.Text);
                 quyenCapNhat.TenQuyen = txtTenQuyen.Text;
-                quyenCapNhat.TrangThai = 1;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (quyenBLL.CapNhatQuyenTK(quyenCapNhat))
+
+            if (!ktTT.KiemTraQuyenTK(quyenCapNhat))
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (quyenBLL.CapNhatQuyenTK(quyenCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -121,7 +139,8 @@ namespace self_discipline
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            frmQuanLiQuyenTaiKhoan_Load(sender, e);
+            txtMaQuyen.Text = string.Empty;
+            txtTenQuyen.Text = string.Empty;
         }
     }
 }
