@@ -333,10 +333,7 @@
         5S6cjlUR17pExPXDsWJOUVk0o5g6Vab+Mp+toqbr79SpU6ch1sjIf5mDzUjHNTqwAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="guna2PictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="picCategoryMon.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAEN
         7wABDe8ByYjFuAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAABckSURBVHhe7d17
@@ -441,6 +438,9 @@
         kiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJknZlN7jB/wChgE2bWY/QoAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="colSTT.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -462,7 +462,7 @@
   <data name="guna2PictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAvPSURBVHhe7ZsH
+        vQAADr0BR/uQrQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAvPSURBVHhe7ZsH
         dFRVGsczPVPT64RAekjYRSSJEDoSRJCiLF0CiIu9r6CQoKu0EGEtKCoCLkhx1wKCCxiisrirRxERUSCT
         hCGThJCEEJFmJHP3+1/zODNvHqFkHhCW75zfIWfem7n3u+Vr9+JzXa6L7GIhwokoIoBQENespBAPEe8S
         u4lTBBPxG2EjNhDTiUxCRbRaCSaeIvYQYmWZWqU4rtMojuq1ylr6+xf6rFH8DlFBLCASiVYjUPxF4jjB
