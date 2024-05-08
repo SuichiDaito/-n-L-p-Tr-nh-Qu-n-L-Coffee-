@@ -88,5 +88,11 @@ namespace self_discipline
             frmLoaiBan frmLoaiBan = new frmLoaiBan();
             frmLoaiBan.ShowDialog();
         }
+
+        private void btnQLPN_Click(object sender, EventArgs e)
+        {
+            frmQuanLyPhieuNhap frmQuanLyPhieuNhap = new frmQuanLyPhieuNhap();
+            frmQuanLyPhieuNhap.ShowDialog();
+        }
     }
 }

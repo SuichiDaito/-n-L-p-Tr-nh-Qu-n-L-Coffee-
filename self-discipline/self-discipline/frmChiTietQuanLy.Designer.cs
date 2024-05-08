@@ -41,11 +41,13 @@
             this.btnQLQuyen = new Guna.UI2.WinForms.Guna2Button();
             this.btnQLNCC = new Guna.UI2.WinForms.Guna2Button();
             this.btnQLNV = new Guna.UI2.WinForms.Guna2Button();
+            this.btnQLPN = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2Panel1
             // 
+            this.guna2Panel1.Controls.Add(this.btnQLPN);
             this.guna2Panel1.Controls.Add(this.btnQLLSP);
             this.guna2Panel1.Controls.Add(this.btnQLLNL);
             this.guna2Panel1.Controls.Add(this.btnQLKM);
@@ -319,6 +321,27 @@
             this.btnQLNV.Text = "Quản Lý Nhân Viên";
             this.btnQLNV.Click += new System.EventHandler(this.btnQLNV_Click);
             // 
+            // btnQLPN
+            // 
+            this.btnQLPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(174)))), ((int)(((byte)(126)))));
+            this.btnQLPN.BorderColor = System.Drawing.Color.Wheat;
+            this.btnQLPN.BorderRadius = 10;
+            this.btnQLPN.BorderThickness = 2;
+            this.btnQLPN.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnQLPN.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnQLPN.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnQLPN.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnQLPN.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(174)))), ((int)(((byte)(126)))));
+            this.btnQLPN.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQLPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(30)))), ((int)(((byte)(20)))));
+            this.btnQLPN.Location = new System.Drawing.Point(12, 372);
+            this.btnQLPN.Name = "btnQLPN";
+            this.btnQLPN.PressedColor = System.Drawing.Color.Transparent;
+            this.btnQLPN.Size = new System.Drawing.Size(244, 82);
+            this.btnQLPN.TabIndex = 12;
+            this.btnQLPN.Text = "Quản Lý Phiếu nhập";
+            this.btnQLPN.Click += new System.EventHandler(this.btnQLPN_Click);
+            // 
             // frmChiTietQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,5 +371,6 @@
         private Guna.UI2.WinForms.Guna2Button btnQLKM;
         private Guna.UI2.WinForms.Guna2Button btnQLLNL;
         private Guna.UI2.WinForms.Guna2Button btnQLLSP;
+        private Guna.UI2.WinForms.Guna2Button btnQLPN;
     }
 }
