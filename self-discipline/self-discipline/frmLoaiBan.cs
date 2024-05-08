@@ -15,7 +15,6 @@ namespace self_discipline
     public partial class frmLoaiBan : Form
     {
         private QuanLyLoaiBanBLL loaiBanBLL = new QuanLyLoaiBanBLL();
-        private KiemTraTrangThai ktTT= new KiemTraTrangThai();
 
         public frmLoaiBan()
         {
@@ -57,7 +56,7 @@ namespace self_discipline
                 MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
+
             if (loaiBanBLL.ThemLoaiBan(loaiBanNew))
             {
                 MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -92,7 +91,9 @@ namespace self_discipline
                 return;
             }
 
-            if (ktTT.KiemTraLBan(loaiBanCapNhat))
+            QuanLyLoaiBanDTO loaiBanTT = loaiBanBLL.layDSLoaiBan().SingleOrDefault(u => u.MaLoai == loaiBanCapNhat.MaLoai);
+
+            if(loaiBanTT == null)
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

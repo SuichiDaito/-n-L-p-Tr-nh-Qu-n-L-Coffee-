@@ -15,7 +15,6 @@ namespace self_discipline
     public partial class frmQuanLiQuyenTaiKhoan : Form
     {
         private QuanLyQuyenTaiKhoanBLL quyenBLL = new QuanLyQuyenTaiKhoanBLL();
-        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmQuanLiQuyenTaiKhoan()
         {
@@ -92,7 +91,9 @@ namespace self_discipline
                 return;
             }
 
-            if (ktTT.KiemTraQuyenTK(quyenCapNhat))
+            QuanLyQuyenTaiKhoanDTO quyenTT = quyenBLL.layDSQuyenTK().SingleOrDefault(u => u.MaQuyen == quyenCapNhat.MaQuyen);
+
+            if (quyenTT == null)
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

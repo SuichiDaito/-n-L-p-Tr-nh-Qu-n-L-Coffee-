@@ -16,7 +16,6 @@ namespace self_discipline
     {
         private QuanLySanPhamBLL spBLL = new QuanLySanPhamBLL();
         private QuanLyLoaiSanPhamBLL loaiSP = new QuanLyLoaiSanPhamBLL();
-        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmSanPham()
         {
@@ -107,7 +106,9 @@ namespace self_discipline
                 return;
             }
 
-            if (ktTT.KiemTraSanPham(spCapNhat))
+            QuanLySanPhamDTO spTT = spBLL.layDSSP().SingleOrDefault(u => u.MaSP == spCapNhat.MaSP);
+
+            if (spTT == null)
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

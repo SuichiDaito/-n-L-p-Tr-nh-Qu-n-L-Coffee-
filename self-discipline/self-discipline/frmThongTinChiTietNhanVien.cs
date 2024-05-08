@@ -17,8 +17,8 @@ namespace self_discipline
     public partial class frmQuanLiNhanVien : Form
     {
         private ThongTinNhanVienBLL nvBLL = new ThongTinNhanVienBLL();
-        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
         private TaiKhoanBLL tkBLL = new TaiKhoanBLL();
+        private KiemTraEmail ktEmail = new KiemTraEmail();
 
         public frmQuanLiNhanVien()
         {
@@ -78,6 +78,11 @@ namespace self_discipline
                     MessageBox.Show("Tuổi phải lớn hơn 18!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                else if (ktEmail.IsValidEmail(nhanVienNew.Email))
+                {
+                    MessageBox.Show("Email không đúng định dạng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -101,8 +106,7 @@ namespace self_discipline
         private void btnXoa_Click(object sender, EventArgs e)
         {
             int id;
-            frmDangNhap frmDangNhap = Application.OpenForms.OfType<frmDangNhap>().FirstOrDefault();
-            string username = frmDangNhap.Username;
+            string username = LayData.Username;
             TaiKhoanDTO tk = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username);
             NhanVienDTO nv = nvBLL.LayDsNhanVien().SingleOrDefault(u => u.MaNV == tk.MaNV);
             
@@ -165,6 +169,11 @@ namespace self_discipline
                     MessageBox.Show("Tuổi phải lớn hơn 18!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                else if (ktEmail.IsValidEmail(nhanVienCapNhat.Email))
+                {
+                    MessageBox.Show("Email không đúng định dạng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -172,12 +181,14 @@ namespace self_discipline
                 return;
             }
 
-            if (ktTT.KiemTraNhanVien(nhanVienCapNhat))
+            NhanVienDTO nvTT = nvBLL.LayDsNhanVien().SingleOrDefault(u => u.MaNV == nhanVienCapNhat.MaNV);
+
+            if (nvTT == null)
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (nvBLL.CapNhatNhanVien(nhanVienCapNhat))
+            else if(nvBLL.CapNhatNhanVien(nhanVienCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -18,9 +18,6 @@ namespace self_discipline
 {
     public partial class frmDangNhap : Form
     {
-        public string Username { get; private set; }
-        public string Password { get; private set; }
-
         private TaiKhoanBLL tkBLL = new TaiKhoanBLL();
         private md5 md5 = new md5();
 
@@ -58,8 +55,11 @@ namespace self_discipline
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
             //Lấy tài khoản mật khẩu
-            Username = txtUsername_Login.Text;
-            Password = txtPassword_Login.Text;
+            string Username = txtUsername_Login.Text;
+            string Password = txtPassword_Login.Text;
+
+            LayData.Username = Username;
+            LayData.Password = Password;
 
             if (string.IsNullOrEmpty(txtUsername_Login.Text) || string.IsNullOrEmpty(txtPassword_Login.Text))
             {

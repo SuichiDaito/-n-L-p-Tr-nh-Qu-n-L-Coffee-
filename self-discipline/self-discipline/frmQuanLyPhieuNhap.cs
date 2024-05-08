@@ -17,7 +17,6 @@ namespace self_discipline
     {
         private QuanLyPhieuNhapBLL pnBLL = new QuanLyPhieuNhapBLL();
         private QuanLyNguyenLieuBLL nlBLL = new QuanLyNguyenLieuBLL();
-        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmQuanLyPhieuNhap()
         {
@@ -143,7 +142,9 @@ namespace self_discipline
                 return;
             }
 
-            if (ktTT.KiemTraPhieuNhap(pnCapNhat))
+            QuanLyPhieuNhapDTO pnTT = pnBLL.layDSPN().SingleOrDefault(u => u.MaPN == pnCapNhat.MaPN);
+
+            if (pnTT == null)
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

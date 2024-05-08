@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -96,7 +97,13 @@ namespace self_discipline
                 return;
             }
 
-            if (banBLL.CapNhatBan(banCapNhat))
+            QuanLyBanDTO banTT = banBLL.layDSBan().SingleOrDefault(u => u.MaBan == banCapNhat.MaBan);
+            if(banTT == null)
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if(banBLL.CapNhatBan(banCapNhat))
             {
                 MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

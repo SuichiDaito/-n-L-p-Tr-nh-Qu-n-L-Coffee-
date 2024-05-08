@@ -22,6 +22,22 @@ namespace self_discipline
         public frmQuanLy()
         {
             InitializeComponent();
+
+            string username = LayData.Username;
+            TaiKhoanDTO tk = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username && u.Quyen == 2);
+            TaiKhoanDTO tkTT = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username);
+            NhanVienDTO nv = nvBLL.LayDsNhanVien().SingleOrDefault(u => u.MaNV == tkTT.MaNV);
+
+            if (tk != null)
+            {
+                btnQuanLi.Enabled = false;
+                btnQuanLi.FillColor = Color.Gray;
+                btnThongKe.Enabled = false;
+                btnBieuDo.Enabled = false;
+            }
+
+            string hoTen = nv.Ho + " " + nv.Ten;
+            lblTenNVDangNhap.Text = hoTen;
         }
 
         private void frmQuanLy_Load(object sender, EventArgs e)
@@ -37,23 +53,6 @@ namespace self_discipline
 
             // Đặt vị trí của Form để nó bắt đầu từ góc trên cùng bên trái
             this.Location = new Point(workingArea.Left, workingArea.Top);
-
-            frmDangNhap frmDangNhap = Application.OpenForms.OfType<frmDangNhap>().FirstOrDefault();
-            string username = frmDangNhap.Username;
-            TaiKhoanDTO tk = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username && u.Quyen == 2);
-            TaiKhoanDTO tkTT = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username);
-            NhanVienDTO nv = nvBLL.LayDsNhanVien().SingleOrDefault(u => u.MaNV == tkTT.MaNV);
-
-            if (tk != null)
-            {
-                btnQuanLi.Enabled = false;
-                btnQuanLi.FillColor = Color.Gray;
-                btnThongKe.Enabled = false;
-                btnBieuDo.Enabled = false;
-            }
-
-            string hoTen = nv.Ho + " " + nv.Ten;
-            lblTenNVDangNhap.Text = hoTen;
         }
 
         private void btnDangXuat_Click(object sender, EventArgs e)

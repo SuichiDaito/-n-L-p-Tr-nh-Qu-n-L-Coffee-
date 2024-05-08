@@ -16,7 +16,6 @@ namespace self_discipline
     public partial class frmKhuyenMai : Form
     {
         private QuanLyKhuyenMaiBLL kmBLL = new QuanLyKhuyenMaiBLL();
-        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmKhuyenMai()
         {
@@ -122,7 +121,9 @@ namespace self_discipline
                 return;
             }
 
-            if (ktTT.KiemTraKM(kmCapNhat))
+            QuanLyKhuyenMaiDTO kmTT = kmBLL.layDSKM().SingleOrDefault(u => u.MaGiamGia == kmCapNhat.MaGiamGia);
+
+            if (kmTT == null)
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

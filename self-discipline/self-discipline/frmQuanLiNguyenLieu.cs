@@ -18,7 +18,6 @@ namespace self_discipline
         private QuanLyNguyenLieuBLL nLBLL = new QuanLyNguyenLieuBLL();
         private QuanLyNhaCungCapBLL nCCBLL = new QuanLyNhaCungCapBLL();
         private QuanLyLoaiNguyenLieuBLL loaiNLBLL = new QuanLyLoaiNguyenLieuBLL();
-        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmQuanLiNguyenLieu()
         {
@@ -126,7 +125,9 @@ namespace self_discipline
                 return;
             }
 
-            if (ktTT.KiemTraNguyenLieu(nlCapNhat))
+            QuanLyNguyenLieuDTO nlTT = nLBLL.layDSNL().SingleOrDefault(u => u.MaNL == nlCapNhat.MaNL);
+
+            if (nlTT == null)
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

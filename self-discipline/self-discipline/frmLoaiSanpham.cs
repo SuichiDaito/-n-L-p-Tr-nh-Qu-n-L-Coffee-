@@ -15,7 +15,6 @@ namespace self_discipline
     public partial class frmLoaiSanpham : Form
     {
         private QuanLyLoaiSanPhamBLL loaiSPBLL = new QuanLyLoaiSanPhamBLL();
-        private KiemTraTrangThai ktTT = new KiemTraTrangThai();
 
         public frmLoaiSanpham()
         {
@@ -119,7 +118,9 @@ namespace self_discipline
                 return;
             }
 
-            if (ktTT.KiemTraLSanPham(loaiSPCapNhat))
+            QuanLyLoaiSanPhamDTO loaiSPTT = loaiSPBLL.layDSLoaiSP().SingleOrDefault(u => u.MaLoai == loaiSPCapNhat.MaLoai);
+
+            if (loaiSPTT == null)
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

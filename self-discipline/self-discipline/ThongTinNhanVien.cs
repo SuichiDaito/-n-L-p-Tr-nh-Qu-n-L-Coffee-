@@ -27,8 +27,7 @@ namespace self_discipline
 
         private void frmThongTinNhanVien_Load_1(object sender, EventArgs e)
         {
-            frmDangNhap frmDangNhap = Application.OpenForms.OfType<frmDangNhap>().FirstOrDefault();
-            string username = frmDangNhap.Username;
+            string username = LayData.Username;
             TaiKhoanDTO tk = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username && u.Quyen == 2);
 
             if(tk != null)

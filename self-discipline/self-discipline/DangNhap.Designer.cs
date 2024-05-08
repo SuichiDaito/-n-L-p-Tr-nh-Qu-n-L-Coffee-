@@ -187,7 +187,6 @@
             this.txtPassword_Login.PasswordChar = '*';
             this.txtPassword_Login.Size = new System.Drawing.Size(196, 33);
             this.txtPassword_Login.TabIndex = 2;
-            this.txtPassword_Login.Text = "11111111";
             // 
             // txtUsername_Login
             // 
@@ -198,7 +197,6 @@
             this.txtUsername_Login.Name = "txtUsername_Login";
             this.txtUsername_Login.Size = new System.Drawing.Size(196, 33);
             this.txtUsername_Login.TabIndex = 1;
-            this.txtUsername_Login.Text = "LamAn02";
             // 
             // label3
             // 
