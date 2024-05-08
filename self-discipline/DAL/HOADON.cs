@@ -17,7 +17,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HOADON()
         {
-            this.CTHD = new HashSet<CTHD>();
+            this.CTHDs = new HashSet<CTHD>();
         }
     
         public int MaHD { get; set; }
@@ -29,7 +29,7 @@ namespace DAL
     
         public virtual BAN BAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CTHD> CTHD { get; set; }
+        public virtual ICollection<CTHD> CTHDs { get; set; }
         public virtual KHUYENMAI KHUYENMAI { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
     }

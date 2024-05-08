@@ -17,7 +17,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KHUYENMAI()
         {
-            this.HOADON = new HashSet<HOADON>();
+            this.HOADONs = new HashSet<HOADON>();
         }
     
         public int MaGiamGia { get; set; }
@@ -30,6 +30,6 @@ namespace DAL
         public Nullable<int> TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HOADON> HOADON { get; set; }
+        public virtual ICollection<HOADON> HOADONs { get; set; }
     }
 }

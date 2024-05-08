@@ -19,11 +19,15 @@ namespace self_discipline
 {
     public partial class frmBanHang : Form
     {
+
         QuanLySanPhamDTO quanLySanPhamDTO = new QuanLySanPhamDTO();
         QuanLySanPhamBLL quanLySanPhamBLL = new QuanLySanPhamBLL();
         QuanLyLoaiSanPhamBLL quanLyLoaiSanPhamBLL = new QuanLyLoaiSanPhamBLL();
         QuanLyLoaiSanPhamDTO quanLyloaiSanPhamDTO = new QuanLyLoaiSanPhamDTO();
         QuanLyKhuyenMaiBLL quanLyKhuyenMaiBLL = new QuanLyKhuyenMaiBLL();
+        string username;
+        public int MainID = 0;
+        public string OrderType;
  
         public frmBanHang()
         {
@@ -31,7 +35,9 @@ namespace self_discipline
         }
         private void frmBanHang_Load_1(object sender, EventArgs e)
         {
-          
+            //frmDangNhap frmDangNhap = Application.OpenForms.OfType<frmDangNhap>().FirstOrDefault();
+            //string username = frmDangNhap.Username;
+            //lblTenTaiKhoan.Text = username;
             LoadProducts();
             cbbKhuyenMai.DataSource = quanLyKhuyenMaiBLL.layDSKM();
             cbbKhuyenMai.DisplayMember = "TenMaGiamGia";
@@ -205,6 +211,34 @@ namespace self_discipline
             string date;
             date = DateTime.Now.ToString();
             txtThoiGian.Text = date;
+        }
+
+        private void btnBillMoi_Click(object sender, EventArgs e)
+        {
+            dgvHoaDonBanHang.Rows.Clear();
+            txtTienGiam.Text = "";
+            txtTienKhachDua.Text = "";
+            txtTienThua.Text = "";
+            txtBan.Visible = true;
+            cbbKhuyenMai.SelectedIndex = -1;
+            lblTotal.Text = "0.00";
+            MainID = 0;
+        }
+        private void btnDineIn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnTakeAway_Click(object sender, EventArgs e)
+        {
+            txtTienGiam.Text = "";
+            txtTienKhachDua.Text = "";
+            txtTienThua.Text = "";
+            txtBan.Visible = true;
+            cbbKhuyenMai.SelectedIndex = -1;
+            lblTotal.Text = "0.00";
+            MainID = 0;
+            OrderType = "TakeAway";
         }
     }
 }

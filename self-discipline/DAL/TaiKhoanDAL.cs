@@ -14,7 +14,7 @@ namespace DAL
 
         public List<TaiKhoanDTO> layDSTK()
         {
-            return COFFEE_HOUSEEnts.TAIKHOAN.Select(u => new TaiKhoanDTO
+            return COFFEE_HOUSEEnts.TAIKHOANs.Select(u => new TaiKhoanDTO
             {
                 MaTK = u.MaTK,
                 MaNV = (int)u.MaNV,
@@ -40,7 +40,7 @@ namespace DAL
                     TrangThai = taiKhoanNew.TrangThai
                 };
 
-                COFFEE_HOUSEEnts.TAIKHOAN.Add(tk);
+                COFFEE_HOUSEEnts.TAIKHOANs.Add(tk);
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -54,7 +54,7 @@ namespace DAL
         {
             try
             {
-                TAIKHOAN tk = COFFEE_HOUSEEnts.TAIKHOAN.SingleOrDefault(u => u.MaTK == taiKhoanCapNhat.MaTK);
+                TAIKHOAN tk = COFFEE_HOUSEEnts.TAIKHOANs.SingleOrDefault(u => u.MaTK == taiKhoanCapNhat.MaTK);
 
                 tk.MaNV = taiKhoanCapNhat.MaNV;
                 tk.Username = taiKhoanCapNhat.Username;
@@ -74,7 +74,7 @@ namespace DAL
         {
             try
             {
-                TAIKHOAN tk = COFFEE_HOUSEEnts.TAIKHOAN.SingleOrDefault(u => u.MaTK == id);
+                TAIKHOAN tk = COFFEE_HOUSEEnts.TAIKHOANs.SingleOrDefault(u => u.MaTK == id);
 
                 tk.TrangThai = 0;
 
