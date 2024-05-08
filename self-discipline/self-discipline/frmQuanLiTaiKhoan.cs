@@ -144,7 +144,7 @@ namespace self_discipline
                 tkCapNhat.MaTK = Convert.ToInt32(txtMaTK.Text);
                 tkCapNhat.MaNV = Convert.ToInt32(txtMaNV.Text);
                 tkCapNhat.Username = txtUsername.Text;
-                tkCapNhat.Password = txtPassword.Text;
+                tkCapNhat.Password = md5.CalculateMD5Hash(txtPassword.Text);
                 tkCapNhat.LoaiTK = (int)cbbLoaiTK.SelectedValue;
                 tkCapNhat.Quyen = (int)cbbQuyen.SelectedValue;
                 tkCapNhat.TrangThai = 1;
@@ -155,7 +155,7 @@ namespace self_discipline
                 return;
             }
 
-            if (!ktTT.KiemTraTaiKhoan(tkCapNhat))
+            if (ktTT.KiemTraTaiKhoan(tkCapNhat))
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -181,6 +181,14 @@ namespace self_discipline
             txtUsername.Text = string.Empty;
             cbbLoaiTK.SelectedItem = null;
             cbbQuyen.SelectedItem = null;
+        }
+
+        private void txtMaNV_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

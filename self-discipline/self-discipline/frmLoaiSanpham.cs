@@ -119,7 +119,7 @@ namespace self_discipline
                 return;
             }
 
-            if (!ktTT.KiemTraLSanPham(loaiSPCapNhat))
+            if (ktTT.KiemTraLSanPham(loaiSPCapNhat))
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -141,6 +141,14 @@ namespace self_discipline
         {
             txtMaLoaiSanPham.Text = string.Empty;
             txtTenLoaiSanPham.Text = string.Empty;
+        }
+
+        private void txtTenLoaiSanPham_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

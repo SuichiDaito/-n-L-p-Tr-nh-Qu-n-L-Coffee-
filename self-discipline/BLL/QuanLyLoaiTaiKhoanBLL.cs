@@ -28,10 +28,6 @@ namespace BLL
 
         public bool CapNhapLoaiTK(QuanLyLoaiTaiKhoanDTO loaiTKCapNhat)
         {
-            QuanLyLoaiTaiKhoanDTO loaiTKKT = loaiTK.layDSLoaiTK().SingleOrDefault(u => u.TenLoai == loaiTKCapNhat.TenLoai);
-
-            if (loaiTKKT != null) return false;
-
             return loaiTK.CapNhatLoaiTK(loaiTKCapNhat);
         }
 

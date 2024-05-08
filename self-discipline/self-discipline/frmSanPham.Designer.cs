@@ -145,6 +145,7 @@
             this.txtTenSP.Name = "txtTenSP";
             this.txtTenSP.Size = new System.Drawing.Size(241, 32);
             this.txtTenSP.TabIndex = 3;
+            this.txtTenSP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenSP_KeyPress);
             // 
             // label2
             // 

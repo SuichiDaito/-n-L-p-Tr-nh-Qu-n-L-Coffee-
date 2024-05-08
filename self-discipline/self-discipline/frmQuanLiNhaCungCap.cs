@@ -98,7 +98,7 @@ namespace self_discipline
                 return;
             }
 
-            if (!ktTT.KiemTraNhaCungCap(nCCCapNhat))
+            if (ktTT.KiemTraNhaCungCap(nCCCapNhat))
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -149,6 +149,14 @@ namespace self_discipline
             txtMaNCC.Text = string.Empty;
             txtDiaChi.Text = string.Empty;
             txtXuatXu.Text = string.Empty;
+        }
+
+        private void txtTenNCC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

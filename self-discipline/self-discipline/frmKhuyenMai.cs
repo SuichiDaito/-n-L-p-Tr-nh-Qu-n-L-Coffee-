@@ -122,7 +122,7 @@ namespace self_discipline
                 return;
             }
 
-            if (!ktTT.KiemTraKM(kmCapNhat))
+            if (ktTT.KiemTraKM(kmCapNhat))
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

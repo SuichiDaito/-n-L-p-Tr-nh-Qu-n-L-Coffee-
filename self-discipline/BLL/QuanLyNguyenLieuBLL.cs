@@ -29,10 +29,6 @@ namespace BLL
 
         public bool CapNhatNguyenLieu(QuanLyNguyenLieuDTO nguyenLieuCapNhat)
         {
-            QuanLyNguyenLieuDTO nLKT = NLDAL.layDSNL().SingleOrDefault(u => u.TenNL == nguyenLieuCapNhat.TenNL);
-
-            if (nLKT != null) return false;
-
             return NLDAL.CapNhatNguyenLieu(nguyenLieuCapNhat);
         }
 

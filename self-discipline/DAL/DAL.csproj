@@ -125,6 +125,7 @@
     <Compile Include="QuanLyLoaiTaiKhoanDAL.cs" />
     <Compile Include="QuanLyNguyenLieuDAL.cs" />
     <Compile Include="QuanLyNhaCungCapDAL.cs" />
+    <Compile Include="QuanLyPhieuNhapDAL.cs" />
     <Compile Include="QuanLyQuyenTaiKhoanDAL.cs" />
     <Compile Include="QuanLySanPhamDAL.cs" />
     <Compile Include="SANPHAM.cs">
@@ -149,10 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="COFFEE_HOUSEDataSet.xsc">
       <DependentUpon>COFFEE_HOUSEDataSet.xsd</DependentUpon>
     </None>
@@ -164,6 +161,10 @@
     <None Include="COFFEE_HOUSEDataSet.xss">
       <DependentUpon>COFFEE_HOUSEDataSet.xsd</DependentUpon>
     </None>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>

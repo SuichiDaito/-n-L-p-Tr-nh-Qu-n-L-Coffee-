@@ -21,6 +21,7 @@ namespace DAL
         public string DVT { get; set; }
         public Nullable<double> GiaNhap { get; set; }
         public Nullable<double> GiamGia { get; set; }
+        public Nullable<int> TrangThai { get; set; }
     
         public virtual DONNHAPHANG DONNHAPHANG { get; set; }
         public virtual NGUYENLIEU NGUYENLIEU { get; set; }

@@ -94,6 +94,7 @@
             this.txtTenLoaiSanPham.Name = "txtTenLoaiSanPham";
             this.txtTenLoaiSanPham.Size = new System.Drawing.Size(183, 32);
             this.txtTenLoaiSanPham.TabIndex = 37;
+            this.txtTenLoaiSanPham.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenLoaiSanPham_KeyPress);
             // 
             // txtMaLoaiSanPham
             // 

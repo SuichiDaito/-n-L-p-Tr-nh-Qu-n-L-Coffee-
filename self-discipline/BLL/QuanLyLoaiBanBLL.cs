@@ -28,10 +28,6 @@ namespace BLL
 
         public bool CapNhatLoaiBan(QuanLyLoaiBanDTO loaiBanCapNhat)
         {
-            QuanLyLoaiBanDTO loaiBanKT = loaiBan.layDSLoaiBan().SingleOrDefault(u => u.TenLoai == loaiBanCapNhat.TenLoai);
-
-            if (loaiBanKT != null) return false;
-
             return loaiBan.CapNhatLoaiBan(loaiBanCapNhat);
         }
 

@@ -30,11 +30,7 @@ namespace BLL
         }
 
         public bool CapNhatSanPham(QuanLySanPhamDTO sanPhamCapNhat)
-        {
-            QuanLySanPhamDTO spKT = spDAL.layDSSP().SingleOrDefault(u => u.TenSP == sanPhamCapNhat.TenSP);
-
-            if (spKT != null) return false;
-
+        { 
             return spDAL.CapNhatSanPham(sanPhamCapNhat);
         }
 

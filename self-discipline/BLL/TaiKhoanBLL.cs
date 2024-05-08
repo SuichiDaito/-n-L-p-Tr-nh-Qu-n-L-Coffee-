@@ -29,10 +29,6 @@ namespace BLL
 
         public bool CapNhapTaiKhoan(TaiKhoanDTO taiKhoanCapNhat)
         {
-            TaiKhoanDTO tkKT = taiKhoanDAL.layDSTK().SingleOrDefault(u => u.MaNV == taiKhoanCapNhat.MaNV);
-
-            if (tkKT != null) return false;
-
             return taiKhoanDAL.CapNhatTaiKhoan(taiKhoanCapNhat);
         }
 

@@ -29,10 +29,6 @@ namespace BLL
 
         public bool CapNhatKhuyenMai(QuanLyKhuyenMaiDTO khuyenMaiCapNhat)
         {
-            QuanLyKhuyenMaiDTO kmKT = kmDAL.layDSKM().SingleOrDefault(u => u.TenMaGiamGia == khuyenMaiCapNhat.TenMaGiamGia);
-
-            if (kmKT != null) return false;
-
             return kmDAL.CapNhatKhuyenMai(khuyenMaiCapNhat);
         }
 

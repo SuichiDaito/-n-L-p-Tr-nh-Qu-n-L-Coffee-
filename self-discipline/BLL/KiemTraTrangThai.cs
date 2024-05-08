@@ -14,7 +14,7 @@ namespace BLL
 
         public bool KiemTraKM(QuanLyKhuyenMaiDTO kMKT)
         {
-            if(kMKT.TrangThai != 0)
+            if(kMKT.TrangThai == 0)
             {
                 return true;
             }
@@ -24,7 +24,7 @@ namespace BLL
 
         public bool KiemTraLBan(QuanLyLoaiBanDTO loaiBanKT)
         {
-            if (loaiBanKT.TrangThai != 0)
+            if (loaiBanKT.TrangThai == 0)
             {
                 return true;
             }
@@ -34,7 +34,7 @@ namespace BLL
 
         public bool KiemTraLNguyenLieu(QuanLyLoaiNguyenLieuDTO loaiNLKT)
         {
-            if (loaiNLKT.TrangThai != 0)
+            if (loaiNLKT.TrangThai == 0)
             {
                 return true;
             }
@@ -44,7 +44,7 @@ namespace BLL
 
         public bool KiemTraLSanPham(QuanLyLoaiSanPhamDTO loaiSP)
         {
-            if (loaiSP.TrangThai != 0)
+            if (loaiSP.TrangThai == 0)
             {
                 return true;
             }
@@ -54,7 +54,7 @@ namespace BLL
 
         public bool KiemTraLTaiKhoan(QuanLyLoaiTaiKhoanDTO loaiTK)
         {
-            if (loaiTK.TrangThai != 0)
+            if (loaiTK.TrangThai == 0)
             {
                 return true;
             }
@@ -64,7 +64,7 @@ namespace BLL
 
         public bool KiemTraNguyenLieu(QuanLyNguyenLieuDTO nlKT)
         {
-            if (nlKT.TrangThai != 0)
+            if (nlKT.TrangThai == 0)
             {
                 return true;
             }
@@ -74,7 +74,7 @@ namespace BLL
 
         public bool KiemTraNhaCungCap(QuanLyNhaCungCapDTO nccKT)
         {
-            if (nccKT.TrangThai != 0)
+            if (nccKT.TrangThai == 0)
             {
                 return true;
             }
@@ -84,7 +84,7 @@ namespace BLL
 
         public bool KiemTraQuyenTK(QuanLyQuyenTaiKhoanDTO quyenKT)
         {
-            if (quyenKT.TrangThai != 0)
+            if (quyenKT.TrangThai == 0)
             {
                 return true;
             }
@@ -94,7 +94,7 @@ namespace BLL
 
         public bool KiemTraTaiKhoan(TaiKhoanDTO tkKT)
         {
-            if (tkKT.TrangThai != 0)
+            if (tkKT.TrangThai == 0)
             {
                 return true;
             }
@@ -104,7 +104,7 @@ namespace BLL
 
         public bool KiemTraSanPham(QuanLySanPhamDTO spKT)
         {
-            if (spKT.TrangThai != 0)
+            if (spKT.TrangThai == 0)
             {
                 return true;
             }
@@ -114,7 +114,17 @@ namespace BLL
 
         public bool KiemTraNhanVien(NhanVienDTO nvKT)
         {
-            if (nvKT.TrangThai != 0)
+            if (nvKT.TrangThai == 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool KiemTraPhieuNhap(QuanLyPhieuNhapDTO pnKT)
+        {
+            if (pnKT.TrangThai == 0)
             {
                 return true;
             }

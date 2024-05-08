@@ -78,6 +78,7 @@
             this.txtTenQuyen.Name = "txtTenQuyen";
             this.txtTenQuyen.Size = new System.Drawing.Size(240, 32);
             this.txtTenQuyen.TabIndex = 37;
+            this.txtTenQuyen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenQuyen_KeyPress);
             // 
             // txtMaQuyen
             // 

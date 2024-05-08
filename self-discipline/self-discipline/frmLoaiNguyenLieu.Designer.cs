@@ -94,6 +94,7 @@
             this.txtTenLoaiNguyenLieu.Name = "txtTenLoaiNguyenLieu";
             this.txtTenLoaiNguyenLieu.Size = new System.Drawing.Size(176, 32);
             this.txtTenLoaiNguyenLieu.TabIndex = 37;
+            this.txtTenLoaiNguyenLieu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenLoaiNguyenLieu_KeyPress);
             // 
             // txtMaLoaiNguyenLieu
             // 

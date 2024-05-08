@@ -29,11 +29,7 @@ namespace BLL
 
         public bool CapNhatNhaCungCap(QuanLyNhaCungCapDTO nCCCapNhat)
         {
-            QuanLyNhaCungCapDTO nccKT = nCCDAL.layDSNCC().SingleOrDefault(u => u.TenNCC == nCCCapNhat.TenNCC);
-
-            if (nccKT != null) return false;
-
-            return nCCDAL.CapNhatNhaCungCap(nCCCapNhat);
+             return nCCDAL.CapNhatNhaCungCap(nCCCapNhat);
         }
 
         public bool XoaNhaCungCap(int id)

@@ -30,10 +30,6 @@ namespace BLL
 
         public bool CapNhatLoaiSP(QuanLyLoaiSanPhamDTO loaiSPCapNhat)
         {
-            QuanLyLoaiSanPhamDTO loaiSPKT = loaiSP.layDSLSP().SingleOrDefault(u => u.TenLoai == loaiSPCapNhat.TenLoai);
-
-            if (loaiSPKT != null) return false;
-
             return loaiSP.CapNhatLoaiSP(loaiSPCapNhat);
         }
 

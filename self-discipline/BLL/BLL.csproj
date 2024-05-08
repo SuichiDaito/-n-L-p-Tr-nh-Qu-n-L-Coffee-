@@ -52,6 +52,7 @@
     <Compile Include="QuanLyLoaiTaiKhoanBLL.cs" />
     <Compile Include="QuanLyNguyenLieuBLL.cs" />
     <Compile Include="QuanLyNhaCungCapBLL.cs" />
+    <Compile Include="QuanLyPhieuNhapBLL.cs" />
     <Compile Include="QuanLyQuyenTaiKhoanBLL.cs" />
     <Compile Include="QuanLySanPhamBLL.cs" />
     <Compile Include="TaiKhoanBLL.cs" />

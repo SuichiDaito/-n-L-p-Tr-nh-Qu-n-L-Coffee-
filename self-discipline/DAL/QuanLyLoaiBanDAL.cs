@@ -17,6 +17,7 @@ namespace DAL
             {
                 MaLoai = u.MaLoai,
                 TenLoai = u.TenLoai,
+                TrangThai = u.TrangThai
             }).Where(v => v.TrangThai == 1).ToList();
         }
 

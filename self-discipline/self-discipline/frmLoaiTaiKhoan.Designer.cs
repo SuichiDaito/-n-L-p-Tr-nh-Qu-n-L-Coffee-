@@ -94,6 +94,7 @@
             this.txtTenLoaiTaiKhoan.Name = "txtTenLoaiTaiKhoan";
             this.txtTenLoaiTaiKhoan.Size = new System.Drawing.Size(194, 32);
             this.txtTenLoaiTaiKhoan.TabIndex = 37;
+            this.txtTenLoaiTaiKhoan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenLoaiTaiKhoan_KeyPress);
             // 
             // txtMaLoaiTaiKhoan
             // 

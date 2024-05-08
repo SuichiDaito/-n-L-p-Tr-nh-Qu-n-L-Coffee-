@@ -215,6 +215,7 @@
             this.txtTenNCC.Name = "txtTenNCC";
             this.txtTenNCC.Size = new System.Drawing.Size(202, 32);
             this.txtTenNCC.TabIndex = 43;
+            this.txtTenNCC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTenNCC_KeyPress);
             // 
             // txtMaNCC
             // 

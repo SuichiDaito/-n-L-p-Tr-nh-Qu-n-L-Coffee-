@@ -49,7 +49,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="QuanLyBanDTO.cs" />
-    <Compile Include="QuanLyChiTietPhieuNhapDTO.cs" />
+    <Compile Include="QuanLyPhieuNhapDTO.cs" />
     <Compile Include="QuanLyCTHoaDonDTO.cs" />
     <Compile Include="QuanLyDonNhapHangDTO.cs" />
     <Compile Include="QuanLyHoaDonDTO.cs" />

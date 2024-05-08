@@ -92,7 +92,7 @@ namespace self_discipline
                 return;
             }
 
-            if (!ktTT.KiemTraLBan(loaiBanCapNhat))
+            if (ktTT.KiemTraLBan(loaiBanCapNhat))
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -141,6 +141,14 @@ namespace self_discipline
         {
             txtMaLoaiBan.Text = string.Empty;
             txtTenLoaiBan.Text = string.Empty;
+        }
+
+        private void txtTenLoaiBan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

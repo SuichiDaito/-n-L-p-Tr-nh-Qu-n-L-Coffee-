@@ -126,7 +126,7 @@ namespace self_discipline
                 return;
             }
 
-            if (!ktTT.KiemTraNguyenLieu(nlCapNhat))
+            if (ktTT.KiemTraNguyenLieu(nlCapNhat))
             {
                 MessageBox.Show("Cập nhật thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -179,6 +179,22 @@ namespace self_discipline
             cbbTenLoaiNL.SelectedItem = null;
             cbbTenNCC.SelectedItem = null;
             nbrSLTon.Value = 0;
+        }
+
+        private void txtTenNL_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDVT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
