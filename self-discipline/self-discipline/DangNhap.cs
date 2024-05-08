@@ -40,9 +40,7 @@ namespace self_discipline
         }
 
         private void frmDangNhap_Load(object sender, EventArgs e)
-        {
-            
-
+        { 
             // Lấy kích thước màn hình chính
             var screenWidth = Screen.PrimaryScreen.Bounds.Width;
             var screenHeight = Screen.PrimaryScreen.Bounds.Height;
@@ -74,7 +72,8 @@ namespace self_discipline
             {
                 frmQuanLy frmQuanLy = new frmQuanLy();
                 frmQuanLy.Show();
-                this.Hide();
+                
+                this.Hide();        
             }
             else
             {

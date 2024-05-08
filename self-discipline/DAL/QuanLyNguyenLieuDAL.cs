@@ -13,7 +13,7 @@ namespace DAL
 
         public List<QuanLyNguyenLieuDTO> layDSNL()
         {
-            return COFFEE_HOUSEEnts.NGUYENLIEU.Select(u => new QuanLyNguyenLieuDTO
+            return COFFEE_HOUSEEnts.NGUYENLIEUx.Select(u => new QuanLyNguyenLieuDTO
             {
                 MaNL = u.MaNL,
                 MaNCC = (int)u.MaNCC,
@@ -39,7 +39,7 @@ namespace DAL
                     TrangThai = nguyenLieuNew.TrangThai
                 };
 
-                COFFEE_HOUSEEnts.NGUYENLIEU.Add(NL);
+                COFFEE_HOUSEEnts.NGUYENLIEUx.Add(NL);
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -53,7 +53,7 @@ namespace DAL
         {
             try
             {
-                NGUYENLIEU NL = COFFEE_HOUSEEnts.NGUYENLIEU.SingleOrDefault(u => u.MaNL == nguyenlieuCapNhat.MaNL);
+                NGUYENLIEU NL = COFFEE_HOUSEEnts.NGUYENLIEUx.SingleOrDefault(u => u.MaNL == nguyenlieuCapNhat.MaNL);
 
                 NL.MaNCC = nguyenlieuCapNhat.MaNCC;
                 NL.TenNL = nguyenlieuCapNhat.TenNL;
@@ -74,7 +74,7 @@ namespace DAL
         {
             try
             {
-                NGUYENLIEU NL = COFFEE_HOUSEEnts.NGUYENLIEU.SingleOrDefault(u => u.MaNL == id);
+                NGUYENLIEU NL = COFFEE_HOUSEEnts.NGUYENLIEUx.SingleOrDefault(u => u.MaNL == id);
 
                 NL.TrangThai = 0;
 

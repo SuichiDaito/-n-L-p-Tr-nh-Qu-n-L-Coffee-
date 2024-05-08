@@ -13,7 +13,7 @@ namespace DAL
 
         public List<QuanLyBanDTO> layDSBan()
         {
-            return COFFEE_HOUSEEnts.BAN.Select(u => new QuanLyBanDTO
+            return COFFEE_HOUSEEnts.BANs.Select(u => new QuanLyBanDTO
             {
                 MaBan = u.MaBan,
                 LoaiBan = (int)u.LoaiBan,
@@ -31,7 +31,7 @@ namespace DAL
                     TrangThai = banNew.TrangThai
                 };
 
-                COFFEE_HOUSEEnts.BAN.Add(ban);
+                COFFEE_HOUSEEnts.BANs.Add(ban);
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -45,7 +45,7 @@ namespace DAL
         {
             try
             {
-                BAN ban = COFFEE_HOUSEEnts.BAN.SingleOrDefault(u => u.MaBan == banCapNhat.MaBan);
+                BAN ban = COFFEE_HOUSEEnts.BANs.SingleOrDefault(u => u.MaBan == banCapNhat.MaBan);
 
                 ban.LoaiBan = banCapNhat.LoaiBan;
                 ban.TrangThai = banCapNhat.TrangThai;
@@ -62,7 +62,7 @@ namespace DAL
         {
             try
             {
-                BAN ban = COFFEE_HOUSEEnts.BAN.SingleOrDefault(u => u.MaBan == id);
+                BAN ban = COFFEE_HOUSEEnts.BANs.SingleOrDefault(u => u.MaBan == id);
 
                 ban.TrangThai = 0;
 

@@ -105,7 +105,7 @@ namespace self_discipline
             string username = frmDangNhap.Username;
             TaiKhoanDTO tk = tkBLL.layDSTK().SingleOrDefault(u => u.Username == username);
             NhanVienDTO nv = nvBLL.LayDsNhanVien().SingleOrDefault(u => u.MaNV == tk.MaNV);
-            
+
             try
             {
                 id = Convert.ToInt32(txtMaNV.Text);
@@ -116,7 +116,9 @@ namespace self_discipline
                 return;
             }
 
-            if(nv != null)
+            NhanVienDTO nvXoa = nvBLL.LayDsNhanVien().SingleOrDefault(u => u.MaNV == id);
+
+            if (nvXoa.MaNV == nv.MaNV)
             {
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
