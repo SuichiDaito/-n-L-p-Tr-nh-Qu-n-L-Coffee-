@@ -118,23 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnTroVveTrangQuanLy.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAYRJREFUWEfF171OwzAUBeAsIKWCERZ4AVhhRDwEgjdiBwTvADuCpYy8AUIdWjZI
-        k1T9SWqSpiIxthRLkXWIb6riDN/AwVfnqnWj1uGctwqGRJsF5/sgbwSGBm6UZtc9L1i+eyP+4U+Hy5/8
-        ApwjgWEN14/nXVlc9fYZ5HlRnILzRjD8AyxXxix5ADNGMAQ6w5i9oGLFm81fwZwRDDXGckneCzBrBMMK
-        Unnfnwbi7I42SwLDUu17rvTD0URcwCMwTwJDoWOjXEIh7WVfQ7mkB1bLpeofpHKJLZaX8um3orOi4If6
-        AuTydQli9iR6t1spV2ZJeucEEXtG/7RhEE6+2l+gzbcgShe3rV3CUcweRe+WWqDREmv4GB6o3uoCUpPn
-        /7E2uxIUWl0ChoK1JWBYsrIEDCtIF7P8QrKrzZLAUENaIkqyGzBrBEPAuMR/filVau/E+Du5BzNGMKwB
-        lyh/mJyA80YwNHDjNLvq+WEmywfB1BNPt3NwjgSGRBvCnpY1BkN7uPMLnM71QkmjQvEAAAAASUVORK5C
-        YII=
-</value>
-  </data>
   <data name="btnTroVeTrangBanHang.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAZhJREFUWEfFl8FOwjAcxnfRRKNHvegL6FWPxocw+kbe1eg76N3oBY4+ghI8QTRs
+        wgAADsIBFShKgAAAAZhJREFUWEfFl8FOwjAcxnfRRKNHvegL6FWPxocw+kbe1eg76N3oBY4+ghI8QTRs
         bGzKQAS2tbU9jHTji20ZY4cfWb/+4fuS/ls6izFWKVA0IU7IHmVsDc3pAEUdwvHkvNkN7De7xxqON3XC
         nytK6Qaq/Q8oqhhNo5PXjkeEuUwr6NdMQ0BRxef34D5vnmIaAooqWn7/BZmn8BB1Qukm+m4eKKrg632D
         jGV0Q0BRRUzI7rsTuMhYRicEFHX4jeLjZrf3hYxlVD0BRV2WEWJOMKVoiMxgUYqEmD1M4uQgHE/P+Al3
@@ -142,6 +129,19 @@
         isoi04TpduDb8LCSbZg+FGEcxUeaB1HGXJD5oUUoYi7IDEwxMK8hc8GcoIuJ+dL/jhNCdiq9kPAr2TUy
         lNExF0BRReWXUn4tf0DGAtWa54GiCv5iclrpi4lAnH68ER1h3LC9SPSFqbkAiiZECdmnlK2jOR2guDqY
         9QdyEe6k9UbruAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnTroVveTrangQuanLy.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wgAADsIBFShKgAAAAYRJREFUWEfF171OwzAUBeAsIKWCERZ4AVhhRDwEgjdiBwTvADuCpYy8AUIdWjZI
+        k1T9SWqSpiIxthRLkXWIb6riDN/AwVfnqnWj1uGctwqGRJsF5/sgbwSGBm6UZtc9L1i+eyP+4U+Hy5/8
+        ApwjgWEN14/nXVlc9fYZ5HlRnILzRjD8AyxXxix5ADNGMAQ6w5i9oGLFm81fwZwRDDXGckneCzBrBMMK
+        Unnfnwbi7I42SwLDUu17rvTD0URcwCMwTwJDoWOjXEIh7WVfQ7mkB1bLpeofpHKJLZaX8um3orOi4If6
+        AuTydQli9iR6t1spV2ZJeucEEXtG/7RhEE6+2l+gzbcgShe3rV3CUcweRe+WWqDREmv4GB6o3uoCUpPn
+        /7E2uxIUWl0ChoK1JWBYsrIEDCtIF7P8QrKrzZLAUENaIkqyGzBrBEPAuMR/filVau/E+Du5BzNGMKwB
+        lyh/mJyA80YwNHDjNLvq+WEmywfB1BNPt3NwjgSGRBvCnpY1BkN7uPMLnM71QkmjQvEAAAAASUVORK5C
+        YII=
 </value>
   </data>
 </root>

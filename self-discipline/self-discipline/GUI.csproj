@@ -243,6 +243,7 @@
     <EmbeddedResource Include="QuanLy.resx">
       <DependentUpon>QuanLy.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Report\HoaDon.rdlc" />
     <EmbeddedResource Include="ThongTinNhanVien.resx">
       <DependentUpon>ThongTinNhanVien.cs</DependentUpon>
     </EmbeddedResource>

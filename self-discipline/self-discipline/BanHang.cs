@@ -19,25 +19,41 @@ namespace self_discipline
 {
     public partial class frmBanHang : Form
     {
-
         QuanLySanPhamDTO quanLySanPhamDTO = new QuanLySanPhamDTO();
         QuanLySanPhamBLL quanLySanPhamBLL = new QuanLySanPhamBLL();
         QuanLyLoaiSanPhamBLL quanLyLoaiSanPhamBLL = new QuanLyLoaiSanPhamBLL();
         QuanLyLoaiSanPhamDTO quanLyloaiSanPhamDTO = new QuanLyLoaiSanPhamDTO();
         QuanLyKhuyenMaiBLL quanLyKhuyenMaiBLL = new QuanLyKhuyenMaiBLL();
+        /// <summary>
+        /// QuanLyHoaDonBLL HoaDonBLL = new QuanLyHoaDonBLL();
+        /// </summary>
+        QuanLyHoaDonBLL HoaDonBLL = new QuanLyHoaDonBLL();
+        /// <summary>
+        ///  TaiKhoanDTO tk = new TaiKhoanDTO();
+        /// </summary>
+        TaiKhoanDTO tk = new TaiKhoanDTO();
+        /// <summary>
+        ///  TaiKhoanBLL TaiKhoanBll = new TaiKhoanBLL();
+        /// </summary>
+        TaiKhoanBLL TaiKhoanBll = new TaiKhoanBLL();
+        /// <summary>
+        ///       QuanLyCTHDBLL CTHoaDon = new QuanLyCTHDBLL();
+        /// </summary>
+        QuanLyChiTietHoaDonBLL ChiTiet = new QuanLyChiTietHoaDonBLL();
+
         string username;
         public int MainID = 0;
         public string OrderType;
- 
+
         public frmBanHang()
         {
             InitializeComponent();
         }
         private void frmBanHang_Load_1(object sender, EventArgs e)
         {
-            //frmDangNhap frmDangNhap = Application.OpenForms.OfType<frmDangNhap>().FirstOrDefault();
-            //string username = frmDangNhap.Username;
-            //lblTenTaiKhoan.Text = username;
+           
+            string username = LayData.Username;
+            lblTenTaiKhoan.Text = username;
             LoadProducts();
             cbbKhuyenMai.DataSource = quanLyKhuyenMaiBLL.layDSKM();
             cbbKhuyenMai.DisplayMember = "TenMaGiamGia";
@@ -112,18 +128,7 @@ namespace self_discipline
 
         }
 
-        private void dgvHoaDonBanHang_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            int count = 0;
-            foreach (DataGridViewRow row in dgvHoaDonBanHang.Rows)
-            {
-                if(row.Cells.Count > 0)
-                {
-                    count++;
-                    row.Cells["colSTT"].Value = count;
-                }
-            }
-        }
+       
         private void GetTotal()
         {
             double tot = 0;
@@ -199,13 +204,6 @@ namespace self_discipline
             frmBanHang_Load_1(sender, e);
         }
 
-        private void guna2TileButton4_Click(object sender, EventArgs e)
-        {
-            frmDatBan frm = new frmDatBan();
-            frm.Show();
-            this.Hide();
-        }
-
         private void timer_Tick(object sender, EventArgs e)
         {
             string date;
@@ -224,10 +222,6 @@ namespace self_discipline
             lblTotal.Text = "0.00";
             MainID = 0;
         }
-        private void btnDineIn_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void btnTakeAway_Click(object sender, EventArgs e)
         {
@@ -239,6 +233,77 @@ namespace self_discipline
             lblTotal.Text = "0.00";
             MainID = 0;
             OrderType = "TakeAway";
+        }
+
+        private void btnTable_Click(object sender, EventArgs e)
+        {
+            frmDatBan frm = new frmDatBan();
+            frm.SendIdTable += Frm_SendIdTable;
+            frm.ShowDialog();
+        }
+        private void Frm_SendIdTable(string value)
+        {
+            txtBan.Text = value;
+        }
+
+        private void dgvHoaDonBanHang_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            int count = 0;
+            foreach (DataGridViewRow row in dgvHoaDonBanHang.Rows)
+            {
+                if (row.Cells.Count > 0)
+                {
+                    count++;
+                    row.Cells["colSTT"].Value = count;
+                }
+            }
+        }
+
+        private void btnThanhToan_Click(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtBan.Text))
+            {
+                MessageBox.Show("Mã bàn chưa được chọn", "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                string username = lblTenTaiKhoan.Text;
+                int id = TaiKhoanBll.TimMaNhanVien(username);
+
+                if (id != null)
+                {
+                    QuanLyHoaDonDTO hoadon = new QuanLyHoaDonDTO();
+                    hoadon.MaNV = id;
+                    hoadon.MaBan = Convert.ToInt32(txtBan.Text);
+                    hoadon.MaKhuyenMai = Convert.ToInt32(cbbKhuyenMai.SelectedValue.ToString());
+                    int tongtien = Convert.ToInt32(lblTotal.Text);
+
+                    if (HoaDonBLL.ThemHoaDon(hoadon) == true )
+                    {
+                        int MaHD = HoaDonBLL.LayMaHoaDon();
+                        QuanLyCTHoaDonDTO ct = new QuanLyCTHoaDonDTO();
+                        foreach (DataGridViewRow row in dgvHoaDonBanHang.Rows)
+                        {
+                            ct.MaHD = MaHD;
+                            ct.MaSP = Convert.ToInt32(row.Cells["colId"].Value.ToString());
+                            ct.SL = Convert.ToInt32(row.Cells["colSoLuong"].Value.ToString());
+                            ChiTiet.ThemChiTiet(ct);
+                             
+                        }
+                        DialogResult dl = MessageBox.Show("Thêm Hoá Đơn Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        DialogResult dl = MessageBox.Show("Thêm Hoá Đơn Thất Bại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                }
+
+            }
         }
     }
 }
