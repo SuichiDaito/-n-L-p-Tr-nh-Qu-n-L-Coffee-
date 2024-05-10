@@ -43,6 +43,7 @@ namespace self_discipline
         ///       QuanLyCTHDBLL CTHoaDon = new QuanLyCTHDBLL();
         /// </summary>
         QuanLyChiTietHoaDonBLL ChiTiet = new QuanLyChiTietHoaDonBLL();
+        QuanLyKhuyenMaiBLL khuyenMaiBLL = new QuanLyKhuyenMaiBLL();
 
         string username;
    
@@ -139,8 +140,6 @@ namespace self_discipline
             {
                 if (item.Cells["colThanhTien"].Value != null)
                 {
-
-
                     tot += Double.Parse(item.Cells["colThanhTien"].Value.ToString());
                 }
             }
@@ -224,18 +223,6 @@ namespace self_discipline
             lblTotal.Text = "0.00";
         
         }
-
-        private void btnTakeAway_Click(object sender, EventArgs e)
-        {
-            txtTienGiam.Text = "";
-            txtTienKhachDua.Text = "";
-            txtTienThua.Text = "";
-            txtBan.Visible = true;
-            cbbKhuyenMai.SelectedIndex = -1;
-            lblTotal.Text = "0.00";
-           
-        }
-
         private void btnTable_Click(object sender, EventArgs e)
         {
             frmDatBan frm = new frmDatBan();
@@ -281,13 +268,30 @@ namespace self_discipline
                     hoadon.MaNV = id;
                     hoadon.MaBan = Convert.ToInt32(txtBan.Text);
                     hoadon.MaKhuyenMai = Convert.ToInt32(cbbKhuyenMai.SelectedValue.ToString());
-                    int tongtien = Convert.ToInt32(lblTotal.Text);
 
-                    if (HoaDonBLL.ThemHoaDon(hoadon) == true )
+                    int tongtien = 0;
+
+                    try {
+                            tongtien = Convert.ToInt32(lblTotal.Text);
+                    }catch(Exception ex)
+                    {
+                        MessageBox.Show("Hoá Đơn Chưa Thêm Món", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (HoaDonBLL.ThemHoaDon(hoadon) == true)
                     {
                         int MaHD = HoaDonBLL.LayMaHoaDon();
                         string MaHoaDon = MaHD.ToString();
-                        if(SendId != null)
+                        if (HoaDonBLL.KiemTraHoaDon(tongtien) == true)
+                        {
+                            QuanLyHoaDonDTO hd = new QuanLyHoaDonDTO();
+                            hd.MaHD = MaHD;
+                            hd.MaKhuyenMai = (int)cbbKhuyenMai.SelectedValue;
+                            HoaDonBLL.CapNhatHoaDon(hd);
+
+                        }
+                        if (SendId != null)
                         {
                             SendId(MaHoaDon);
                         }
@@ -299,23 +303,25 @@ namespace self_discipline
                             ct.SL = Convert.ToInt32(row.Cells["colSoLuong"].Value.ToString());
                             ct.GiaBan = Convert.ToInt32(row.Cells["colGia"].Value.ToString());
                             ChiTiet.ThemChiTiet(ct);
-                             
                         }
                         DialogResult dl = MessageBox.Show("Thêm Hoá Đơn Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if(DialogResult.OK == dl)
-                        {
-                            ReportHoaDon hd = new ReportHoaDon();
-                            hd.Show();
-                            this.Close();
-
-                        }
+                                if (DialogResult.OK == dl)
+                                {
+                                    ReportHoaDon hd = new ReportHoaDon();
+                                    hd.Show();
+                                    this.Close();
+                                }
+                                  else
+                                    {
+                                        MessageBox.Show("Thêm Hoá Đơn Thất Bại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return;
+                                    }             
                     }
                     else
                     {
                         DialogResult dl = MessageBox.Show("Thêm Hoá Đơn Thất Bại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
                 }
 
             }
@@ -323,11 +329,21 @@ namespace self_discipline
 
         private void txtTienKhachDua_TextChanged(object sender, EventArgs e)
         {
+            if (txtTienKhachDua.Text == "")
+            {
+                txtTienThua.Text = "";
+                return;
+            }
             float TienKhach = float.Parse(txtTienKhachDua.Text);
             float TienThoi = 0;
             float TongTien = float.Parse(lblTotal.Text);
             TienThoi = TienKhach - TongTien;
             txtTienThua.Text = TienThoi.ToString();
+
+            if(TongTien > 100)
+            {
+                cbbKhuyenMai.Visible = true;
+            }
         }
 
         private void btnTra_Click(object sender, EventArgs e)
@@ -359,6 +375,24 @@ namespace self_discipline
             float TongTien = float.Parse(lblTotal.Text);
             TienThoi = TienKhach - TongTien;
             txtTienThua.Text = TienThoi.ToString();
+            if( TongTien  > 100)
+            {
+                cbbKhuyenMai.Visible = true;
+            }
+        }
+
+        private void txtTienKhachDua_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnXoaMon_Click(object sender, EventArgs e)
+        {
+            btnBillMoi_Click(sender, e);
+
         }
     }
 }

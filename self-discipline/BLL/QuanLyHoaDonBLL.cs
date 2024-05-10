@@ -18,21 +18,26 @@ namespace BLL
             return HoaDon.ThemHoaDon(hd);
 
         }
-        public bool CapNhatHoaDon(int tongtien, QuanLyHoaDonDTO hoadon)
+        public bool CapNhatHoaDon(QuanLyHoaDonDTO hoadon)
         {
-            if (tongtien > 100)
-            {
-                return HoaDon.CapNhatKhuyenMai(hoadon);
-            }
-            else return false;
-
+            return HoaDon.CapNhatKhuyenMai(hoadon);
         }
+
         public int LayMaHoaDon()
         {
-            string query = "SELECT MAX(MAHD) FROM HOADON";
-            int id = _provider.ExecuteScalar(query);
+            int id = _provider.ExecuteScalar();
             return id;
         }
-
+         public bool KiemTraHoaDon(int tongtien)
+        {
+            if(tongtien > 100)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

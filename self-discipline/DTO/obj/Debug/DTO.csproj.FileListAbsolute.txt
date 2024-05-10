@@ -1,7 +1,0 @@
-E:\NGOCCAN\Đồ án LT-Windows\Demo_DoAn\update 4\-n-L-p-Tr-nh-Qu-n-L-Coffee-\self-discipline\DTO\bin\Debug\DTO.dll.config
-E:\NGOCCAN\Đồ án LT-Windows\Demo_DoAn\update 4\-n-L-p-Tr-nh-Qu-n-L-Coffee-\self-discipline\DTO\bin\Debug\DTO.dll
-E:\NGOCCAN\Đồ án LT-Windows\Demo_DoAn\update 4\-n-L-p-Tr-nh-Qu-n-L-Coffee-\self-discipline\DTO\bin\Debug\DTO.pdb
-E:\NGOCCAN\Đồ án LT-Windows\Demo_DoAn\update 4\-n-L-p-Tr-nh-Qu-n-L-Coffee-\self-discipline\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
-E:\NGOCCAN\Đồ án LT-Windows\Demo_DoAn\update 4\-n-L-p-Tr-nh-Qu-n-L-Coffee-\self-discipline\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
-E:\NGOCCAN\Đồ án LT-Windows\Demo_DoAn\update 4\-n-L-p-Tr-nh-Qu-n-L-Coffee-\self-discipline\DTO\obj\Debug\DTO.dll
-E:\NGOCCAN\Đồ án LT-Windows\Demo_DoAn\update 4\-n-L-p-Tr-nh-Qu-n-L-Coffee-\self-discipline\DTO\obj\Debug\DTO.pdb

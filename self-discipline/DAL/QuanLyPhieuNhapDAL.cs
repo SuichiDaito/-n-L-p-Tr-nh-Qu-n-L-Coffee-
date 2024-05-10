@@ -22,7 +22,7 @@ namespace DAL
                 DVT = u.DVT,
                 GiaNhap = (float)u.GiaNhap,
                 GiamGia = (float)u.GiamGia,
-                //TrangThai = (int)u.TrangThai
+                TrangThai = (int)u.TrangThai
             }).Where(v => v.TrangThai == 1).ToList();
         }
 

@@ -45,8 +45,6 @@ namespace DAL
         {
             try
             {
-
-
                 HOADON HD = COFFEE_HOUSEEnts.HOADONs.SingleOrDefault(u => u.MaHD == hoadon.MaHD);
                 HD.MaKhuyenMai = hoadon.MaKhuyenMai;
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
