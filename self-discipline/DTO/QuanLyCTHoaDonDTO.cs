@@ -12,5 +12,6 @@ namespace DTO
         public int MaHD { get; set; }
         public int MaSP { get; set; }
         public int SL { get; set; }
+         public double GiaBan { get; set; }
     }
 }

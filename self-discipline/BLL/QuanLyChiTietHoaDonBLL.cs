@@ -28,5 +28,9 @@ namespace BLL
             }
 
         }
+         public List<QuanLyCTHoaDonDTO> LayCTHDTheoMa(int id)
+        {
+            return ChiTiet.LayDsChiTietHoaDonTheoMa(id);
+        }
     }
 }

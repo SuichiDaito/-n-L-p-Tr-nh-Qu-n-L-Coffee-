@@ -1,6 +1,7 @@
 ﻿
 using BLL;
 using DTO;
+using Microsoft.Reporting.Map.WebForms.BingMaps;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,8 @@ namespace self_discipline
 {
     public partial class frmBanHang : Form
     {
+        public delegate void MaHoaDon(string value);
+        public event MaHoaDon SendId;
         QuanLySanPhamDTO quanLySanPhamDTO = new QuanLySanPhamDTO();
         QuanLySanPhamBLL quanLySanPhamBLL = new QuanLySanPhamBLL();
         QuanLyLoaiSanPhamBLL quanLyLoaiSanPhamBLL = new QuanLyLoaiSanPhamBLL();
@@ -42,8 +45,7 @@ namespace self_discipline
         QuanLyChiTietHoaDonBLL ChiTiet = new QuanLyChiTietHoaDonBLL();
 
         string username;
-        public int MainID = 0;
-        public string OrderType;
+   
 
         public frmBanHang()
         {
@@ -220,7 +222,7 @@ namespace self_discipline
             txtBan.Visible = true;
             cbbKhuyenMai.SelectedIndex = -1;
             lblTotal.Text = "0.00";
-            MainID = 0;
+        
         }
 
         private void btnTakeAway_Click(object sender, EventArgs e)
@@ -231,8 +233,7 @@ namespace self_discipline
             txtBan.Visible = true;
             cbbKhuyenMai.SelectedIndex = -1;
             lblTotal.Text = "0.00";
-            MainID = 0;
-            OrderType = "TakeAway";
+           
         }
 
         private void btnTable_Click(object sender, EventArgs e)
@@ -245,6 +246,7 @@ namespace self_discipline
         {
             txtBan.Text = value;
         }
+      
 
         private void dgvHoaDonBanHang_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -284,16 +286,29 @@ namespace self_discipline
                     if (HoaDonBLL.ThemHoaDon(hoadon) == true )
                     {
                         int MaHD = HoaDonBLL.LayMaHoaDon();
+                        string MaHoaDon = MaHD.ToString();
+                        if(SendId != null)
+                        {
+                            SendId(MaHoaDon);
+                        }
                         QuanLyCTHoaDonDTO ct = new QuanLyCTHoaDonDTO();
                         foreach (DataGridViewRow row in dgvHoaDonBanHang.Rows)
                         {
                             ct.MaHD = MaHD;
                             ct.MaSP = Convert.ToInt32(row.Cells["colId"].Value.ToString());
                             ct.SL = Convert.ToInt32(row.Cells["colSoLuong"].Value.ToString());
+                            ct.GiaBan = Convert.ToInt32(row.Cells["colGia"].Value.ToString());
                             ChiTiet.ThemChiTiet(ct);
                              
                         }
                         DialogResult dl = MessageBox.Show("Thêm Hoá Đơn Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if(DialogResult.OK == dl)
+                        {
+                            ReportHoaDon hd = new ReportHoaDon();
+                            hd.Show();
+                            this.Close();
+
+                        }
                     }
                     else
                     {
@@ -304,6 +319,46 @@ namespace self_discipline
                 }
 
             }
+        }
+
+        private void txtTienKhachDua_TextChanged(object sender, EventArgs e)
+        {
+            float TienKhach = float.Parse(txtTienKhachDua.Text);
+            float TienThoi = 0;
+            float TongTien = float.Parse(lblTotal.Text);
+            TienThoi = TienKhach - TongTien;
+            txtTienThua.Text = TienThoi.ToString();
+        }
+
+        private void btnTra_Click(object sender, EventArgs e)
+        {
+            string mon1 = "Trà Dâu Tươi";
+            string mon2 = "Trà Vải";
+            foreach (var item in Products_panel.Controls)
+            {
+                var sp = (ucSanPham)item;
+                if(sp.TenMon == mon1)
+                {
+                    sp.Visible = sp.TenMon.ToLower().Contains("Trà Dâu Tươi".Trim().ToLower());
+                }
+                else if(sp.TenMon == mon2)
+                {
+                    sp.Visible = sp.TenMon.ToLower().Contains("Trà Vải".Trim().ToLower());
+                }
+                else
+                {
+                    sp.Visible = false;
+                }
+            }
+        }
+
+        private void lblTotal_TextChanged(object sender, EventArgs e)
+        {
+            float TienKhach = float.Parse(txtTienKhachDua.Text);
+            float TienThoi = 0;
+            float TongTien = float.Parse(lblTotal.Text);
+            TienThoi = TienKhach - TongTien;
+            txtTienThua.Text = TienThoi.ToString();
         }
     }
 }

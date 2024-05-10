@@ -21,6 +21,7 @@
           <Property Name="MaHD" Type="int" />
           <Property Name="MaSP" Type="int" />
           <Property Name="SL" Type="int" Nullable="false" />
+          <Property Name="GiaBan" Type="float" />
         </EntityType>
         <EntityType Name="CTPHIEUNHAP">
           <Key>
@@ -449,6 +450,7 @@
           <Property Name="MaHD" Type="Int32" />
           <Property Name="MaSP" Type="Int32" />
           <Property Name="SL" Type="Int32" Nullable="false" />
+          <Property Name="GiaBan" Type="Double" />
           <NavigationProperty Name="HOADON" Relationship="Self.FK_CT_HD" FromRole="CTHD" ToRole="HOADON" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CT_SP" FromRole="CTHD" ToRole="SANPHAM" />
         </EntityType>
@@ -904,6 +906,7 @@
                 <ScalarProperty Name="MaHD" ColumnName="MaHD" />
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="SL" ColumnName="SL" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
