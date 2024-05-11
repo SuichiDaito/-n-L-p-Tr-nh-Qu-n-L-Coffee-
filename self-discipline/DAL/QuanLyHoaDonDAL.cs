@@ -10,16 +10,16 @@ namespace DAL
     public class QuanLyHoaDonDAL
     {
         private COFFEE_HOUSEEntities COFFEE_HOUSEEnts = new COFFEE_HOUSEEntities();
-        List<QuanLyHoaDonDTO> LayDSHoaDon()
+      public  List<QuanLyHoaDonDTO> LayDSHoaDon()
         {
             return COFFEE_HOUSEEnts.HOADONs.Select(u => (new QuanLyHoaDonDTO
             {
                 MaHD = u.MaHD,
                 MaBan = u.MaBan.Value,
-                MaKhuyenMai = u.MaKhuyenMai.Value,
                 MaNV = u.MaNV.Value,
-                NgayLap = u.NgayLap
-            })).Where(v => v.TrangThai == 1).ToList();
+                NgayLap = u.NgayLap,
+                TrangThai = u.TrangThai
+            })).Where( v => v.TrangThai == true).ToList();
         }
         public bool ThemHoaDon(QuanLyHoaDonDTO HoaDon)
         {
@@ -31,7 +31,7 @@ namespace DAL
                     HD.MaNV = HoaDon.MaNV;
                     HD.MaKhuyenMai = null;
                     HD.NgayLap = DateTime.Now;
-                    HD.TrangThai = 1;
+                    HD.TrangThai = true;
                 };
                 COFFEE_HOUSEEnts.HOADONs.Add(HD);
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
@@ -60,7 +60,7 @@ namespace DAL
             {
 
                 HOADON HD = COFFEE_HOUSEEnts.HOADONs.SingleOrDefault(u => u.MaHD == HoaDon.MaHD);
-                HD.TrangThai = 0;
+                HD.TrangThai = false;
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
             catch (Exception ex) { return false; }

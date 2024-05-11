@@ -25,7 +25,7 @@ namespace DAL
         public Nullable<int> MaBan { get; set; }
         public Nullable<int> MaKhuyenMai { get; set; }
         public System.DateTime NgayLap { get; set; }
-        public int TrangThai { get; set; }
+        public bool TrangThai { get; set; }
     
         public virtual BAN BAN { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

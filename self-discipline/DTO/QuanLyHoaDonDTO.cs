@@ -13,6 +13,6 @@ namespace DTO
         public int MaBan {  get; set; }
         public int MaKhuyenMai { get; set; }
         public DateTime NgayLap { get; set; }
-        public int TrangThai { get; set; }
+        public bool TrangThai { get; set; }
     }
 }

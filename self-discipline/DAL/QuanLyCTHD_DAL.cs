@@ -19,7 +19,7 @@ namespace DAL
                 MaHD = u.MaHD.Value,
                 MaSP = u.MaSP.Value,
                 SL = u.SL,
-                GiaBan = u.GiaBan.Value
+                GiaBan = u.GiaBan
             }).ToList();
 
         }
@@ -31,7 +31,7 @@ namespace DAL
                 MaHD = u.MaHD.Value,
                 MaSP = u.MaSP.Value,
                 SL = u.SL,
-                GiaBan = u.GiaBan.Value
+                GiaBan = u.GiaBan
             }).Where( v => v.MaHD == id ).ToList();
 
         }

@@ -13,6 +13,12 @@ namespace BLL
 
         DataProvider _provider = new DataProvider();
         QuanLyHoaDonDAL HoaDon = new QuanLyHoaDonDAL();
+       
+        public List<QuanLyHoaDonDTO> LayDs()
+        {
+            return HoaDon.LayDSHoaDon();
+        }
+     
         public bool ThemHoaDon(QuanLyHoaDonDTO hd)
         {
             return HoaDon.ThemHoaDon(hd);

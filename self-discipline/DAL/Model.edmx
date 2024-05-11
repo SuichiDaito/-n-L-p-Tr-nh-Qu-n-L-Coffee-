@@ -21,7 +21,7 @@
           <Property Name="MaHD" Type="int" />
           <Property Name="MaSP" Type="int" />
           <Property Name="SL" Type="int" Nullable="false" />
-          <Property Name="GiaBan" Type="float" />
+          <Property Name="GiaBan" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="CTPHIEUNHAP">
           <Key>
@@ -54,7 +54,7 @@
           <Property Name="MaBan" Type="int" />
           <Property Name="MaKhuyenMai" Type="int" />
           <Property Name="NgayLap" Type="date" Nullable="false" />
-          <Property Name="TrangThai" Type="int" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="KHUYENMAI">
           <Key>
@@ -450,7 +450,7 @@
           <Property Name="MaHD" Type="Int32" />
           <Property Name="MaSP" Type="Int32" />
           <Property Name="SL" Type="Int32" Nullable="false" />
-          <Property Name="GiaBan" Type="Double" />
+          <Property Name="GiaBan" Type="Double" Nullable="false" />
           <NavigationProperty Name="HOADON" Relationship="Self.FK_CT_HD" FromRole="CTHD" ToRole="HOADON" />
           <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CT_SP" FromRole="CTHD" ToRole="SANPHAM" />
         </EntityType>
@@ -489,7 +489,7 @@
           <Property Name="MaBan" Type="Int32" />
           <Property Name="MaKhuyenMai" Type="Int32" />
           <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TrangThai" Type="Int32" Nullable="false" />
+          <Property Name="TrangThai" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="BAN" Relationship="Self.FK_HD_BAN" FromRole="HOADON" ToRole="BAN" />
           <NavigationProperty Name="CTHDs" Relationship="Self.FK_CT_HD" FromRole="HOADON" ToRole="CTHD" />
           <NavigationProperty Name="KHUYENMAI" Relationship="Self.FK_HD_KM" FromRole="HOADON" ToRole="KHUYENMAI" />
