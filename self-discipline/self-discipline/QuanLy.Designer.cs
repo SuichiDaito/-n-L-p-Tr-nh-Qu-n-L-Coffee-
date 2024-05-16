@@ -41,8 +41,8 @@
             this.btnBanHang = new Guna.UI2.WinForms.Guna2Button();
             this.btnThongTin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblTenNVDangNhap = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
@@ -157,6 +157,7 @@
             this.btnThongKe.Size = new System.Drawing.Size(280, 106);
             this.btnThongKe.TabIndex = 3;
             this.btnThongKe.Text = "Thống Kê";
+            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
             // 
             // btnQuanLi
             // 
@@ -225,18 +226,6 @@
             this.guna2Panel1.Size = new System.Drawing.Size(280, 671);
             this.guna2Panel1.TabIndex = 3;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(3, 642);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Thành viên:";
-            // 
             // lblTenNVDangNhap
             // 
             this.lblTenNVDangNhap.AutoSize = true;
@@ -248,6 +237,18 @@
             this.lblTenNVDangNhap.Size = new System.Drawing.Size(117, 20);
             this.lblTenNVDangNhap.TabIndex = 6;
             this.lblTenNVDangNhap.Text = " Tên thành viên";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 642);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Thành viên:";
             // 
             // frmQuanLy
             // 

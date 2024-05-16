@@ -53,7 +53,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
-                Double phantram = Convert.ToInt32(cmd.ExecuteScalar());
+                double phantram = Convert.ToDouble(cmd.ExecuteScalar());
                 conn.Close();
                 return phantram;
             }

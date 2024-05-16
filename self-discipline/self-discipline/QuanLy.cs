@@ -99,5 +99,11 @@ namespace self_discipline
         {
             OpenChildForm(new frmChiTietQuanLy());
         }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            frmChiTietThongKe thongke = new frmChiTietThongKe();
+            thongke.ShowDialog();
+        }
     }
 }

@@ -20,8 +20,7 @@ namespace self_discipline
         QuanLyKhuyenMaiBLL KhuyenMai = new QuanLyKhuyenMaiBLL();
 
 
-        
-        
+    
         public BillList()
         {
             

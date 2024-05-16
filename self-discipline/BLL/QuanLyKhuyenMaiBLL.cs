@@ -38,7 +38,7 @@ namespace BLL
             return kmDAL.XoaKhuyenMai(id);
         }
         public double LayPhanTramKhuyenMai(int id)
-        {
+      {
             double phantram = _providers.ExecuteScalar_KhuyenMai(id);
             return phantram;
         }

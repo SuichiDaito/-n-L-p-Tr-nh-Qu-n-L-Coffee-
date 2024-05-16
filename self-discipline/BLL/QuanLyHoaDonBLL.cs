@@ -24,11 +24,7 @@ namespace BLL
             return HoaDon.ThemHoaDon(hd);
 
         }
-        public bool CapNhatHoaDon(QuanLyHoaDonDTO hoadon)
-        {
-            return HoaDon.CapNhatKhuyenMai(hoadon);
-        }
-
+      
         public int LayMaHoaDon()
         {
             int id = _provider.ExecuteScalar();

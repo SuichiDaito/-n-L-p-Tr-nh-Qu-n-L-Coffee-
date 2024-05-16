@@ -5,20 +5,19 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 
 namespace self_discipline
 {
     public partial class ReportHoaDon : Form
     {
-        public static int MaHD;
-        QuanLyCTHoaDonDTO chiTiet = new QuanLyCTHoaDonDTO();
-        QuanLyChiTietHoaDonBLL ChiTietBLL = new QuanLyChiTietHoaDonBLL();
         public ReportHoaDon()
         {
             InitializeComponent();
@@ -27,24 +26,28 @@ namespace self_discipline
 
         private void ReportHoaDon_Load(object sender, EventArgs e)
         {
-            LayCTHD(chiTiet);
+           
+                
+            DT_ThongKeSanPham SanPhamThongKe = new DT_ThongKeSanPham();
+            string conncetion = @"Data Source=QuangDuc\SQLSERVER;Initial Catalog=COFFEE_HOUSE;Integrated Security=True;Encrypt=False";
+            string query = @"SELECT  CTHD.MaSP, SANPHAM.TenSP, CTHD.SL, CTHD.GiaBan
+                                    FROM  CTHD INNER JOIN SANPHAM ON CTHD.MaSP = SANPHAM.MaSP";
+            SqlConnection conn = new SqlConnection(conncetion);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+            adapter.Fill(SanPhamThongKe, SanPhamThongKe.Tables[0].TableName);
+            ReportDataSource rds = new ReportDataSource("ThongKeTheoSanPham", SanPhamThongKe.Tables[0]);
+            this.reportViewer1.LocalReport.DataSources.Clear();
+            this.reportViewer1.LocalReport.DataSources.Add(rds);
+            this.reportViewer1.LocalReport.Refresh();
+       
+
+
+
             this.reportViewer1.RefreshReport();
+          
         }
       
-        public  void LayCTHD(QuanLyCTHoaDonDTO chiTiet)
-        {
-            frmBanHang frm = new frmBanHang();
-            frm.SendId += Frm_SendId;
-            MaHD = chiTiet.MaHD;
-            List<QuanLyCTHoaDonDTO> LayDs = ChiTietBLL.LayCTHDTheoMa(chiTiet.MaHD);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "self-discipline.Resources.Report.HoaDon.rdlc";
-            this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("CTHD", LayDs));
-            this.reportViewer1.RefreshReport();
-        }
-        private void Frm_SendId(string value)
-        {
-            MaHD = Convert.ToInt32(value);
-        }
+        
 
 
     }

@@ -12,7 +12,7 @@ namespace self_discipline.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -31,6 +31,17 @@ namespace self_discipline.Properties {
         public string COFFEE_HOUSEConnectionString {
             get {
                 return ((string)(this["COFFEE_HOUSEConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=QuangDuc\\SQLSERVER;Initial Catalog=COFFEE_HOUSE;Integrated Security=T" +
+            "rue;Encrypt=False")]
+        public string COFFEE_HOUSEConnectionString1 {
+            get {
+                return ((string)(this["COFFEE_HOUSEConnectionString1"]));
             }
         }
     }

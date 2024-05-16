@@ -33,11 +33,12 @@
             // 
             // reportViewer1
             // 
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "self_discipline.Resources.Report.HoaDon.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(12, 12);
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "self_discipline.ThongKe_TheoSanPham.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(766, 486);
+            this.reportViewer1.Size = new System.Drawing.Size(790, 510);
             this.reportViewer1.TabIndex = 0;
             // 
             // ReportHoaDon

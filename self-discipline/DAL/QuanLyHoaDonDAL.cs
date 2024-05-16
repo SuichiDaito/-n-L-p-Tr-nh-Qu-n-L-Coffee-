@@ -29,7 +29,7 @@ namespace DAL
                 {
                     HD.MaBan = HoaDon.MaBan;
                     HD.MaNV = HoaDon.MaNV;
-                    HD.MaKhuyenMai = null;
+                    HD.MaKhuyenMai = HoaDon.MaKhuyenMai;
                     HD.NgayLap = DateTime.Now;
                     HD.TrangThai = true;
                 };
@@ -39,20 +39,6 @@ namespace DAL
             catch (Exception ex) { return false; }
 
         }
-
-
-        public bool CapNhatKhuyenMai(QuanLyHoaDonDTO hoadon)
-        {
-            try
-            {
-                HOADON HD = COFFEE_HOUSEEnts.HOADONs.SingleOrDefault(u => u.MaHD == hoadon.MaHD);
-                HD.MaKhuyenMai = hoadon.MaKhuyenMai;
-                return COFFEE_HOUSEEnts.SaveChanges() == 1;
-            }
-            catch (Exception ex) { return false; }
-
-        }
-
 
         public bool XoaHoaDon(QuanLyHoaDonDTO HoaDon)
         {

@@ -109,11 +109,25 @@
     <Compile Include="DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="DT_ThongKeSanPham.cs">
+      <DependentUpon>DT_ThongKeSanPham.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DT_ThongKeSanPham.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DT_ThongKeSanPham.xsd</DependentUpon>
+    </Compile>
     <Compile Include="frmChiTietQuanLy.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmChiTietQuanLy.Designer.cs">
       <DependentUpon>frmChiTietQuanLy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChiTietThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChiTietThongKe.Designer.cs">
+      <DependentUpon>frmChiTietThongKe.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDatBan.cs">
       <SubType>Form</SubType>
@@ -205,7 +219,18 @@
     <Compile Include="ReportHoaDon.Designer.cs">
       <DependentUpon>ReportHoaDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportPhieuNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportPhieuNhap.Designer.cs">
+      <DependentUpon>ReportPhieuNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="ThongKePhieuNhap.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThongKePhieuNhap.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ThongTinNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmChiTietQuanLy.resx">
       <DependentUpon>frmChiTietQuanLy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChiTietThongKe.resx">
+      <DependentUpon>frmChiTietThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDatBan.resx">
       <DependentUpon>frmDatBan.cs</DependentUpon>
@@ -280,7 +308,12 @@
     <EmbeddedResource Include="ReportHoaDon.resx">
       <DependentUpon>ReportHoaDon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Report\HoaDon.rdlc" />
+    <EmbeddedResource Include="HoaDon.rdlc" />
+    <EmbeddedResource Include="ReportPhieuNhap.resx">
+      <DependentUpon>ReportPhieuNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKe_TheoPhieuNhap.rdlc" />
+    <EmbeddedResource Include="ThongKe_TheoSanPham.rdlc" />
     <EmbeddedResource Include="ThongTinNhanVien.resx">
       <DependentUpon>ThongTinNhanVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -297,8 +330,22 @@
     <EmbeddedResource Include="ucSanPham.resx">
       <DependentUpon>ucSanPham.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DT_ThongKeSanPham.xsc">
+      <DependentUpon>DT_ThongKeSanPham.xsd</DependentUpon>
+    </None>
+    <None Include="DT_ThongKeSanPham.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DT_ThongKeSanPham.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DT_ThongKeSanPham.xss">
+      <DependentUpon>DT_ThongKeSanPham.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DTO.NhanVienDTO.datasource" />
     <None Include="Properties\DataSources\DTO.QuanLyCTHoaDonDTO.datasource" />
+    <None Include="Properties\DataSources\DTO.QuanLyHoaDonDTO.datasource" />
+    <None Include="Properties\DataSources\DTO.QuanLyLoaiBanDTO.datasource" />
     <None Include="Properties\DataSources\DTO.QuanLySanPhamDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -309,6 +356,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="ThongKePhieuNhap.xsc">
+      <DependentUpon>ThongKePhieuNhap.xsd</DependentUpon>
+    </None>
+    <None Include="ThongKePhieuNhap.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThongKePhieuNhap.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ThongKePhieuNhap.xss">
+      <DependentUpon>ThongKePhieuNhap.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -346,6 +404,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\img\" />
+    <Folder Include="Resources\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlServerTypes\readme.htm" />
