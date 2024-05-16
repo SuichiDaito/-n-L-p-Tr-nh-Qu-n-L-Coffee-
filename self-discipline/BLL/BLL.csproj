@@ -45,6 +45,8 @@
     <Compile Include="md5.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuanLyBanBLL.cs" />
+    <Compile Include="QuanLyChiTietHoaDonBLL.cs" />
+    <Compile Include="QuanLyHoaDonBLL.cs" />
     <Compile Include="QuanLyKhuyenMaiBLL.cs" />
     <Compile Include="QuanLyLoaiBanBLL.cs" />
     <Compile Include="QuanLyLoaiNguyenLieuBLL.cs" />

@@ -118,6 +118,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="QuanLyBanDAL.cs" />
+    <Compile Include="QuanLyCTHD_DAL.cs" />
+    <Compile Include="QuanLyHoaDonDAL.cs" />
     <Compile Include="QuanLyKhuyenMaiDAL.cs" />
     <Compile Include="QuanLyLoaiBanDAL.cs" />
     <Compile Include="QuanLyLoaiNguyenLieuDAL.cs" />

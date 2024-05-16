@@ -18,6 +18,7 @@ namespace DAL
         public Nullable<int> MaHD { get; set; }
         public Nullable<int> MaSP { get; set; }
         public int SL { get; set; }
+        public double GiaBan { get; set; }
     
         public virtual HOADON HOADON { get; set; }
         public virtual SANPHAM SANPHAM { get; set; }

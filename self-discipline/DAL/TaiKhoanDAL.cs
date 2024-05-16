@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    
+
     public class TaiKhoanDAL
     {
         private COFFEE_HOUSEEntities COFFEE_HOUSEEnts = new COFFEE_HOUSEEntities();
@@ -84,6 +84,13 @@ namespace DAL
             {
                 return false;
             }
+        }
+        public int TimNhanVienTheoUsername(string username)
+        {
+            TAIKHOAN TaiKhoan = (TAIKHOAN)COFFEE_HOUSEEnts.TAIKHOANs.SingleOrDefault(u => u.Username == username);
+
+            int id = TaiKhoan.MaNV.Value;
+            return id;
         }
     }
 }

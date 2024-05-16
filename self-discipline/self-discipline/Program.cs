@@ -16,7 +16,11 @@ namespace self_discipline
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new frmQuanLiNhanVien());
+
+            Application.Run(new BillList());
+
         }
     }
 }

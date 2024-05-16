@@ -36,5 +36,10 @@ namespace BLL
         {
             return taiKhoanDAL.XoaTaiKhoan(id);
         }
+        public int TimMaNhanVien(string username)
+        {
+            int ID = taiKhoanDAL.TimNhanVienTheoUsername(username);
+            return ID;
+        }
     }
 }

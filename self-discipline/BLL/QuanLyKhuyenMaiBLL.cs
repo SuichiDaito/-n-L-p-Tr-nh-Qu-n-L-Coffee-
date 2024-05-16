@@ -11,6 +11,7 @@ namespace BLL
 {
     public class QuanLyKhuyenMaiBLL
     {
+        DataProvider _providers = new DataProvider();
         private QuanLyKhuyenMaiDAL kmDAL = new QuanLyKhuyenMaiDAL();
 
         public List<QuanLyKhuyenMaiDTO> layDSKM()
@@ -35,6 +36,11 @@ namespace BLL
         public bool XoaKhuyenMai(int id)
         {
             return kmDAL.XoaKhuyenMai(id);
+        }
+        public double LayPhanTramKhuyenMai(int id)
+        {
+            double phantram = _providers.ExecuteScalar_KhuyenMai(id);
+            return phantram;
         }
     }
 }
