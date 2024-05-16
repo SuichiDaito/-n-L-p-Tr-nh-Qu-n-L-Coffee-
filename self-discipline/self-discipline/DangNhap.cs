@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Web.UI.WebControls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace self_discipline
 {
@@ -80,6 +81,32 @@ namespace self_discipline
                 MessageBox.Show("Sai tài khoản hoặc mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
+
+        private void txtUsername_Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                e.Handled = true;
+            }
+        }
+                       
+        private void txtPassword_Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtUsername_Login_TextChanged(object sender, EventArgs e)
+        {
+            txtUsername_Login.Text = string.Empty;
+        }
+
+        private void txtPassword_Login_TextChanged(object sender, EventArgs e)
+        {
+            txtUsername_Login.Text = string.Empty;
         }
     }
 }

@@ -43,6 +43,8 @@ namespace self_discipline
                 MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            txtTenQuyen.Text = txtTenQuyen.Text.TrimEnd();
             
             QuanLyQuyenTaiKhoanDTO quyenNew = new QuanLyQuyenTaiKhoanDTO();
 
@@ -77,6 +79,8 @@ namespace self_discipline
                 MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            txtTenQuyen.Text = txtTenQuyen.Text.TrimEnd();
 
             QuanLyQuyenTaiKhoanDTO quyenCapNhat = new QuanLyQuyenTaiKhoanDTO();
 
@@ -136,6 +140,9 @@ namespace self_discipline
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            txtMaQuyen.Text = string.Empty;
+            txtTenQuyen.Text = string.Empty;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)

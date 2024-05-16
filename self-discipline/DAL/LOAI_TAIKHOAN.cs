@@ -17,7 +17,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LOAI_TAIKHOAN()
         {
-            this.TAIKHOANs = new HashSet<TAIKHOAN>();
+            this.TAIKHOAN = new HashSet<TAIKHOAN>();
         }
     
         public int MaLoai { get; set; }
@@ -25,6 +25,6 @@ namespace DAL
         public int TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TAIKHOAN> TAIKHOANs { get; set; }
+        public virtual ICollection<TAIKHOAN> TAIKHOAN { get; set; }
     }
 }

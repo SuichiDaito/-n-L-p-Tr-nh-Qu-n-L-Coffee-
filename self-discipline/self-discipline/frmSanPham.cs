@@ -55,7 +55,23 @@ namespace self_discipline
                 return;
             }
 
+            txtTenSP.Text = txtTenSP.Text.TrimEnd();
+
             QuanLySanPhamDTO spNew = new QuanLySanPhamDTO();
+            string text = nbrGiaBan.Text;
+            decimal value = nbrGiaBan.Value;
+
+            if (text.Contains("."))
+            {
+                text = text.Replace(".", ",");
+                nbrGiaBan.Text = text;
+            }
+
+            if (value != Math.Floor(value)) // Kiểm tra số chữ số thập phân khác 0
+            {
+                MessageBox.Show("Vui lòng nhập một số nguyên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nbrGiaBan.Value = 0;
+            }
 
             try
             {
@@ -91,7 +107,23 @@ namespace self_discipline
                 return;
             }
 
+            txtTenSP.Text = txtTenSP.Text.TrimEnd();
+
             QuanLySanPhamDTO spCapNhat = new QuanLySanPhamDTO();
+            string text = nbrGiaBan.Text;
+            decimal value = nbrGiaBan.Value;
+
+            if (text.Contains("."))
+            {
+                text = text.Replace(".", ",");
+                nbrGiaBan.Text = text;
+            }
+
+            if (value != Math.Floor(value)) // Kiểm tra số chữ số thập phân khác 0
+            {
+                MessageBox.Show("Vui lòng nhập một số nguyên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nbrGiaBan.Value = 0;
+            }
 
             try
             {
@@ -151,6 +183,11 @@ namespace self_discipline
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            txtMaSP.Text = string.Empty;
+            txtTenSP.Text = string.Empty;
+            cbbLoaiSP.SelectedItem = null;
+            nbrGiaBan.Value = 0;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -166,6 +203,24 @@ namespace self_discipline
             if (!char.IsControl(e.KeyChar) && char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void nbrGiaBan_ValueChanged(object sender, EventArgs e)
+        {
+            string text = nbrGiaBan.Text;
+            decimal value = nbrGiaBan.Value;
+
+            if (text.Contains("."))
+            {
+                text = text.Replace(".", ",");
+                nbrGiaBan.Text = text;
+            }
+
+            if (value != Math.Floor(value)) // Kiểm tra số chữ số thập phân khác 0
+            {
+                MessageBox.Show("Vui lòng nhập một số nguyên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nbrGiaBan.Value = 0;
             }
         }
     }
