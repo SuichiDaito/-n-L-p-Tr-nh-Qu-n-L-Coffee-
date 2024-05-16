@@ -46,6 +46,10 @@ namespace self_discipline
                 return;
             }
 
+            txtTenNCC.Text = txtXuatXu.Text.TrimEnd();
+            txtXuatXu.Text = txtXuatXu.Text.TrimEnd();
+            txtDiaChi.Text = txtDiaChi.Text.TrimEnd();
+
             QuanLyNhaCungCapDTO nCCNew = new QuanLyNhaCungCapDTO();
 
             try
@@ -81,6 +85,10 @@ namespace self_discipline
                 MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            txtTenNCC.Text = txtXuatXu.Text.TrimEnd();
+            txtXuatXu.Text = txtXuatXu.Text.TrimEnd();
+            txtDiaChi.Text = txtDiaChi.Text.TrimEnd();
 
             QuanLyNhaCungCapDTO nCCCapNhat = new QuanLyNhaCungCapDTO();
 
@@ -142,6 +150,11 @@ namespace self_discipline
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            txtTenNCC.Text = string.Empty;
+            txtMaNCC.Text = string.Empty;
+            txtDiaChi.Text = string.Empty;
+            txtXuatXu.Text = string.Empty;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)

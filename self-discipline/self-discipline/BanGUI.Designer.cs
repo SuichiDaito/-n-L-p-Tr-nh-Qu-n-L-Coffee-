@@ -242,7 +242,6 @@
             this.btnLoaiBan.Size = new System.Drawing.Size(37, 34);
             this.btnLoaiBan.TabIndex = 15;
             this.btnLoaiBan.Text = "...";
-            this.btnLoaiBan.Click += new System.EventHandler(this.btnLoaiBan_Click);
             // 
             // btnLoad
             // 

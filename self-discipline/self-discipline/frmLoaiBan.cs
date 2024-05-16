@@ -44,6 +44,8 @@ namespace self_discipline
                 return;
             }
 
+            txtTenLoaiBan.Text = txtTenLoaiBan.Text.TrimEnd();
+
             QuanLyLoaiBanDTO loaiBanNew = new QuanLyLoaiBanDTO();
 
             try
@@ -77,6 +79,8 @@ namespace self_discipline
                 MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            txtTenLoaiBan.Text = txtTenLoaiBan.Text.TrimEnd();
 
             QuanLyLoaiBanDTO loaiBanCapNhat = new QuanLyLoaiBanDTO();
 
@@ -136,6 +140,9 @@ namespace self_discipline
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            txtMaLoaiBan.Text = string.Empty;
+            txtTenLoaiBan.Text = string.Empty;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)

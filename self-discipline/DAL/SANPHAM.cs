@@ -17,7 +17,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SANPHAM()
         {
-            this.CTHDs = new HashSet<CTHD>();
+            this.CTHD = new HashSet<CTHD>();
         }
     
         public int MaSP { get; set; }
@@ -28,7 +28,7 @@ namespace DAL
         public int TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CTHD> CTHDs { get; set; }
+        public virtual ICollection<CTHD> CTHD { get; set; }
         public virtual LOAI_SANPHAM LOAI_SANPHAM { get; set; }
     }
 }

@@ -106,6 +106,7 @@
             this.nbrGiaBan.Name = "nbrGiaBan";
             this.nbrGiaBan.Size = new System.Drawing.Size(241, 36);
             this.nbrGiaBan.TabIndex = 7;
+            this.nbrGiaBan.ValueChanged += new System.EventHandler(this.nbrGiaBan_ValueChanged);
             // 
             // label4
             // 

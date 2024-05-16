@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,8 +51,26 @@ namespace self_discipline
                 return;
             }
 
+            txtTenKM.Text = txtTenKM.Text.TrimEnd();
+            txtMoTa.Text = txtMoTa.Text.TrimEnd();
+
             QuanLyKhuyenMaiDTO kmNew = new QuanLyKhuyenMaiDTO();
             DateTime now = DateTime.Now;
+            string text = nbrSL.Text;
+            decimal value = nbrSL.Value;
+
+            if (text.Contains("."))
+            {
+                text = text.Replace(".", ",");
+                nbrSL.Text = text;
+            }
+
+            if (value != Math.Floor(value)) // Kiểm tra số chữ số thập phân khác 0
+            {
+                MessageBox.Show("Vui lòng nhập một số nguyên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nbrSL.Value = 0;
+                return;
+            }
 
             try
             {
@@ -63,7 +82,7 @@ namespace self_discipline
                 kmNew.MoTa = txtMoTa.Text;
                 kmNew.TrangThai = 1;
 
-                if(kmNew.NgayBatDau > now || kmNew.NgayKetThuc > now)
+                if( kmNew.NgayBatDau < now || kmNew.NgayKetThuc < kmNew.NgayBatDau)
                 {
                     MessageBox.Show("Ngày bắt đầu và kết thúc không được vượt quá ngày hiện tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -96,8 +115,26 @@ namespace self_discipline
                 return;
             }
 
+            txtTenKM.Text = txtTenKM.Text.TrimEnd();
+            txtMoTa.Text = txtMoTa.Text.TrimEnd();
+
             QuanLyKhuyenMaiDTO kmCapNhat = new QuanLyKhuyenMaiDTO();
             DateTime now = DateTime.Now;
+            string text = nbrSL.Text;
+            decimal value = nbrSL.Value;
+
+            if (text.Contains("."))
+            {
+                text = text.Replace(".", ",");
+                nbrSL.Text = text;
+            }
+
+            if (value != Math.Floor(value)) // Kiểm tra số chữ số thập phân khác 0
+            {
+                MessageBox.Show("Vui lòng nhập một số nguyên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nbrSL.Value = 0;
+                return;
+            }
 
             try
             {
@@ -109,7 +146,7 @@ namespace self_discipline
                 kmCapNhat.NgayKetThuc = (DateTime)dtpNgayKetThuc.Value;
                 kmCapNhat.MoTa = txtMoTa.Text;
 
-                if (kmCapNhat.NgayBatDau > now || kmCapNhat.NgayKetThuc > now)
+                if (kmCapNhat.NgayBatDau.Year < now.Year - 1 || kmCapNhat.NgayKetThuc < kmCapNhat.NgayBatDau)
                 {
                     MessageBox.Show("Ngày bắt đầu và kết thúc không được vượt quá ngày hiện tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -166,6 +203,14 @@ namespace self_discipline
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            txtMaGG.Text = string.Empty;
+            txtMoTa.Text = string.Empty;
+            txtTenKM.Text = string.Empty;
+            nbrPhanTram.Value = 0;
+            nbrSL.Value = 0;
+            dtpNgayBatDau.Value = DateTime.Now;
+            dtpNgayKetThuc.Value = DateTime.Now;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -177,6 +222,24 @@ namespace self_discipline
             nbrSL.Value = 0;
             dtpNgayBatDau.Value = DateTime.Now;
             dtpNgayKetThuc.Value = DateTime.Now;
+        }
+
+        private void nbrSL_ValueChanged(object sender, EventArgs e)
+        {
+            string text = nbrSL.Text;
+            decimal value = nbrSL.Value;
+
+            if (text.Contains("."))
+            {
+                text = text.Replace(".", ",");
+                nbrSL.Text = text;
+            }
+
+            if (value != Math.Floor(value)) // Kiểm tra số chữ số thập phân khác 0
+            {
+                MessageBox.Show("Vui lòng nhập một số nguyên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                nbrSL.Value = 0;
+            }
         }
     }
 }

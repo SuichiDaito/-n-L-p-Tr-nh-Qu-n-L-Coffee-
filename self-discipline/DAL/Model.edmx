@@ -13,15 +13,6 @@
           <Property Name="LoaiBan" Type="int" />
           <Property Name="TrangThai" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="CTHD">
-          <Key>
-            <PropertyRef Name="MaCT" />
-          </Key>
-          <Property Name="MaCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaHD" Type="int" />
-          <Property Name="MaSP" Type="int" />
-          <Property Name="SL" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="CTPHIEUNHAP">
           <Key>
             <PropertyRef Name="MaPN" />
@@ -34,6 +25,15 @@
           <Property Name="GiaNhap" Type="float" />
           <Property Name="GiamGia" Type="float" />
           <Property Name="TrangThai" Type="int" />
+        </EntityType>
+        <EntityType Name="CTHD">
+          <Key>
+            <PropertyRef Name="MaCT" />
+          </Key>
+          <Property Name="MaCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaHD" Type="int" />
+          <Property Name="MaSP" Type="int" />
+          <Property Name="SL" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DONNHAPHANG">
           <Key>
@@ -147,6 +147,16 @@
           <Property Name="LoaiSP" Type="int" />
           <Property Name="GiaBan" Type="int" />
           <Property Name="TrangThai" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TAIKHOAN">
           <Key>
@@ -350,8 +360,8 @@
         </Association>
         <EntityContainer Name="COFFEE_HOUSEModelStoreContainer">
           <EntitySet Name="BAN" EntityType="Self.BAN" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CTHD" EntityType="Self.CTHD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CTPHIEUNHAP" EntityType="Self.CTPHIEUNHAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CTHD" EntityType="Self.CTHD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DONNHAPHANG" EntityType="Self.DONNHAPHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" Schema="dbo" store:Type="Tables" />
@@ -363,6 +373,7 @@
           <EntitySet Name="NGUYENLIEU" EntityType="Self.NGUYENLIEU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TK_QUYEN" EntityType="Self.TK_QUYEN" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CT_DNH" Association="Self.FK_CT_DNH">
@@ -438,19 +449,8 @@
           <Property Name="MaBan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LoaiBan" Type="Int32" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HOADONs" Relationship="Self.FK_HD_BAN" FromRole="BAN" ToRole="HOADON" />
+          <NavigationProperty Name="HOADON" Relationship="Self.FK_HD_BAN" FromRole="BAN" ToRole="HOADON" />
           <NavigationProperty Name="LOAI_BAN" Relationship="Self.FK_LOAI_BAN" FromRole="BAN" ToRole="LOAI_BAN" />
-        </EntityType>
-        <EntityType Name="CTHD">
-          <Key>
-            <PropertyRef Name="MaCT" />
-          </Key>
-          <Property Name="MaCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaHD" Type="Int32" />
-          <Property Name="MaSP" Type="Int32" />
-          <Property Name="SL" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HOADON" Relationship="Self.FK_CT_HD" FromRole="CTHD" ToRole="HOADON" />
-          <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CT_SP" FromRole="CTHD" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="CTPHIEUNHAP">
           <Key>
@@ -467,6 +467,17 @@
           <NavigationProperty Name="DONNHAPHANG" Relationship="Self.FK_CT_DNH" FromRole="CTPHIEUNHAP" ToRole="DONNHAPHANG" />
           <NavigationProperty Name="NGUYENLIEU" Relationship="Self.FK_CT_NL" FromRole="CTPHIEUNHAP" ToRole="NGUYENLIEU" />
         </EntityType>
+        <EntityType Name="CTHD">
+          <Key>
+            <PropertyRef Name="MaCT" />
+          </Key>
+          <Property Name="MaCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaHD" Type="Int32" />
+          <Property Name="MaSP" Type="Int32" />
+          <Property Name="SL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HOADON" Relationship="Self.FK_CT_HD" FromRole="CTHD" ToRole="HOADON" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CT_SP" FromRole="CTHD" ToRole="SANPHAM" />
+        </EntityType>
         <EntityType Name="DONNHAPHANG">
           <Key>
             <PropertyRef Name="MaDon" />
@@ -475,7 +486,7 @@
           <Property Name="MaNV" Type="Int32" />
           <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CTPHIEUNHAPs" Relationship="Self.FK_CT_DNH" FromRole="DONNHAPHANG" ToRole="CTPHIEUNHAP" />
+          <NavigationProperty Name="CTPHIEUNHAP" Relationship="Self.FK_CT_DNH" FromRole="DONNHAPHANG" ToRole="CTPHIEUNHAP" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_DNH_NV" FromRole="DONNHAPHANG" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="HOADON">
@@ -489,7 +500,7 @@
           <Property Name="NgayLap" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BAN" Relationship="Self.FK_HD_BAN" FromRole="HOADON" ToRole="BAN" />
-          <NavigationProperty Name="CTHDs" Relationship="Self.FK_CT_HD" FromRole="HOADON" ToRole="CTHD" />
+          <NavigationProperty Name="CTHD" Relationship="Self.FK_CT_HD" FromRole="HOADON" ToRole="CTHD" />
           <NavigationProperty Name="KHUYENMAI" Relationship="Self.FK_HD_KM" FromRole="HOADON" ToRole="KHUYENMAI" />
           <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_HD_NV" FromRole="HOADON" ToRole="NHANVIEN" />
         </EntityType>
@@ -505,7 +516,7 @@
           <Property Name="NgayKetThuc" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Mota" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TrangThai" Type="Int32" />
-          <NavigationProperty Name="HOADONs" Relationship="Self.FK_HD_KM" FromRole="KHUYENMAI" ToRole="HOADON" />
+          <NavigationProperty Name="HOADON" Relationship="Self.FK_HD_KM" FromRole="KHUYENMAI" ToRole="HOADON" />
         </EntityType>
         <EntityType Name="LOAI_BAN">
           <Key>
@@ -514,7 +525,7 @@
           <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenLoai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BANs" Relationship="Self.FK_LOAI_BAN" FromRole="LOAI_BAN" ToRole="BAN" />
+          <NavigationProperty Name="BAN" Relationship="Self.FK_LOAI_BAN" FromRole="LOAI_BAN" ToRole="BAN" />
         </EntityType>
         <EntityType Name="LOAI_NGUYENLIEU">
           <Key>
@@ -523,7 +534,7 @@
           <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tenloai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="NGUYENLIEUx" Relationship="Self.FK_LOAI_NGUYENLIEU" FromRole="LOAI_NGUYENLIEU" ToRole="NGUYENLIEU" />
+          <NavigationProperty Name="NGUYENLIEU" Relationship="Self.FK_LOAI_NGUYENLIEU" FromRole="LOAI_NGUYENLIEU" ToRole="NGUYENLIEU" />
         </EntityType>
         <EntityType Name="LOAI_SANPHAM">
           <Key>
@@ -532,7 +543,7 @@
           <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenLoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_LOAI_SANPHAM" FromRole="LOAI_SANPHAM" ToRole="SANPHAM" />
+          <NavigationProperty Name="SANPHAM" Relationship="Self.FK_LOAI_SANPHAM" FromRole="LOAI_SANPHAM" ToRole="SANPHAM" />
         </EntityType>
         <EntityType Name="LOAI_TAIKHOAN">
           <Key>
@@ -541,7 +552,7 @@
           <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenLoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK_TK_LOAI_TK" FromRole="LOAI_TAIKHOAN" ToRole="TAIKHOAN" />
+          <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK_TK_LOAI_TK" FromRole="LOAI_TAIKHOAN" ToRole="TAIKHOAN" />
         </EntityType>
         <EntityType Name="NCC">
           <Key>
@@ -552,7 +563,7 @@
           <Property Name="XuatXu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="NGUYENLIEUx" Relationship="Self.FK_NL_NCC" FromRole="NCC" ToRole="NGUYENLIEU" />
+          <NavigationProperty Name="NGUYENLIEU" Relationship="Self.FK_NL_NCC" FromRole="NCC" ToRole="NGUYENLIEU" />
         </EntityType>
         <EntityType Name="NGUYENLIEU">
           <Key>
@@ -565,7 +576,7 @@
           <Property Name="SLTon" Type="Int32" Nullable="false" />
           <Property Name="DVT" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CTPHIEUNHAPs" Relationship="Self.FK_CT_NL" FromRole="NGUYENLIEU" ToRole="CTPHIEUNHAP" />
+          <NavigationProperty Name="CTPHIEUNHAP" Relationship="Self.FK_CT_NL" FromRole="NGUYENLIEU" ToRole="CTPHIEUNHAP" />
           <NavigationProperty Name="LOAI_NGUYENLIEU" Relationship="Self.FK_LOAI_NGUYENLIEU" FromRole="NGUYENLIEU" ToRole="LOAI_NGUYENLIEU" />
           <NavigationProperty Name="NCC" Relationship="Self.FK_NL_NCC" FromRole="NGUYENLIEU" ToRole="NCC" />
         </EntityType>
@@ -583,9 +594,9 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="ChucVu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DONNHAPHANGs" Relationship="Self.FK_DNH_NV" FromRole="NHANVIEN" ToRole="DONNHAPHANG" />
-          <NavigationProperty Name="HOADONs" Relationship="Self.FK_HD_NV" FromRole="NHANVIEN" ToRole="HOADON" />
-          <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK_TK_NV" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
+          <NavigationProperty Name="DONNHAPHANG" Relationship="Self.FK_DNH_NV" FromRole="NHANVIEN" ToRole="DONNHAPHANG" />
+          <NavigationProperty Name="HOADON" Relationship="Self.FK_HD_NV" FromRole="NHANVIEN" ToRole="HOADON" />
+          <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK_TK_NV" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
         </EntityType>
         <EntityType Name="SANPHAM">
           <Key>
@@ -597,8 +608,18 @@
           <Property Name="LoaiSP" Type="Int32" />
           <Property Name="GiaBan" Type="Int32" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CTHDs" Relationship="Self.FK_CT_SP" FromRole="SANPHAM" ToRole="CTHD" />
+          <NavigationProperty Name="CTHD" Relationship="Self.FK_CT_SP" FromRole="SANPHAM" ToRole="CTHD" />
           <NavigationProperty Name="LOAI_SANPHAM" Relationship="Self.FK_LOAI_SANPHAM" FromRole="SANPHAM" ToRole="LOAI_SANPHAM" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TAIKHOAN">
           <Key>
@@ -622,7 +643,7 @@
           <Property Name="MaQuyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenQuyen" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TrangThai" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TAIKHOANs" Relationship="Self.FK_TK_QUYEN" FromRole="TK_QUYEN" ToRole="TAIKHOAN" />
+          <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK_TK_QUYEN" FromRole="TK_QUYEN" ToRole="TAIKHOAN" />
         </EntityType>
         <Association Name="FK_HD_BAN">
           <End Role="BAN" Type="Self.BAN" Multiplicity="0..1" />
@@ -648,30 +669,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CT_HD">
-          <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
-          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HOADON">
-              <PropertyRef Name="MaHD" />
-            </Principal>
-            <Dependent Role="CTHD">
-              <PropertyRef Name="MaHD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CT_SP">
-          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
-          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SANPHAM">
-              <PropertyRef Name="MaSP" />
-            </Principal>
-            <Dependent Role="CTHD">
-              <PropertyRef Name="MaSP" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CT_DNH">
           <End Role="DONNHAPHANG" Type="Self.DONNHAPHANG" Multiplicity="0..1" />
           <End Role="CTPHIEUNHAP" Type="Self.CTPHIEUNHAP" Multiplicity="*" />
@@ -693,6 +690,30 @@
             </Principal>
             <Dependent Role="CTPHIEUNHAP">
               <PropertyRef Name="MaNL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CT_HD">
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
+          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="CTHD">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CT_SP">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="0..1" />
+          <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="CTHD">
+              <PropertyRef Name="MaSP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -805,81 +826,82 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="COFFEE_HOUSEEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BANs" EntityType="Self.BAN" />
-          <EntitySet Name="CTHDs" EntityType="Self.CTHD" />
-          <EntitySet Name="CTPHIEUNHAPs" EntityType="Self.CTPHIEUNHAP" />
-          <EntitySet Name="DONNHAPHANGs" EntityType="Self.DONNHAPHANG" />
-          <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
-          <EntitySet Name="KHUYENMAIs" EntityType="Self.KHUYENMAI" />
+          <EntitySet Name="BAN" EntityType="Self.BAN" />
+          <EntitySet Name="CTPHIEUNHAP" EntityType="Self.CTPHIEUNHAP" />
+          <EntitySet Name="CTHD" EntityType="Self.CTHD" />
+          <EntitySet Name="DONNHAPHANG" EntityType="Self.DONNHAPHANG" />
+          <EntitySet Name="HOADON" EntityType="Self.HOADON" />
+          <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" />
           <EntitySet Name="LOAI_BAN" EntityType="Self.LOAI_BAN" />
           <EntitySet Name="LOAI_NGUYENLIEU" EntityType="Self.LOAI_NGUYENLIEU" />
           <EntitySet Name="LOAI_SANPHAM" EntityType="Self.LOAI_SANPHAM" />
           <EntitySet Name="LOAI_TAIKHOAN" EntityType="Self.LOAI_TAIKHOAN" />
-          <EntitySet Name="NCCs" EntityType="Self.NCC" />
-          <EntitySet Name="NGUYENLIEUx" EntityType="Self.NGUYENLIEU" />
-          <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
-          <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
-          <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
+          <EntitySet Name="NCC" EntityType="Self.NCC" />
+          <EntitySet Name="NGUYENLIEU" EntityType="Self.NGUYENLIEU" />
+          <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" />
+          <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" />
           <EntitySet Name="TK_QUYEN" EntityType="Self.TK_QUYEN" />
           <AssociationSet Name="FK_HD_BAN" Association="Self.FK_HD_BAN">
-            <End Role="BAN" EntitySet="BANs" />
-            <End Role="HOADON" EntitySet="HOADONs" />
+            <End Role="BAN" EntitySet="BAN" />
+            <End Role="HOADON" EntitySet="HOADON" />
           </AssociationSet>
           <AssociationSet Name="FK_LOAI_BAN" Association="Self.FK_LOAI_BAN">
             <End Role="LOAI_BAN" EntitySet="LOAI_BAN" />
-            <End Role="BAN" EntitySet="BANs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CT_HD" Association="Self.FK_CT_HD">
-            <End Role="HOADON" EntitySet="HOADONs" />
-            <End Role="CTHD" EntitySet="CTHDs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CT_SP" Association="Self.FK_CT_SP">
-            <End Role="SANPHAM" EntitySet="SANPHAMs" />
-            <End Role="CTHD" EntitySet="CTHDs" />
+            <End Role="BAN" EntitySet="BAN" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_DNH" Association="Self.FK_CT_DNH">
-            <End Role="DONNHAPHANG" EntitySet="DONNHAPHANGs" />
-            <End Role="CTPHIEUNHAP" EntitySet="CTPHIEUNHAPs" />
+            <End Role="DONNHAPHANG" EntitySet="DONNHAPHANG" />
+            <End Role="CTPHIEUNHAP" EntitySet="CTPHIEUNHAP" />
           </AssociationSet>
           <AssociationSet Name="FK_CT_NL" Association="Self.FK_CT_NL">
-            <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
-            <End Role="CTPHIEUNHAP" EntitySet="CTPHIEUNHAPs" />
+            <End Role="NGUYENLIEU" EntitySet="NGUYENLIEU" />
+            <End Role="CTPHIEUNHAP" EntitySet="CTPHIEUNHAP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CT_HD" Association="Self.FK_CT_HD">
+            <End Role="HOADON" EntitySet="HOADON" />
+            <End Role="CTHD" EntitySet="CTHD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CT_SP" Association="Self.FK_CT_SP">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="CTHD" EntitySet="CTHD" />
           </AssociationSet>
           <AssociationSet Name="FK_DNH_NV" Association="Self.FK_DNH_NV">
-            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-            <End Role="DONNHAPHANG" EntitySet="DONNHAPHANGs" />
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="DONNHAPHANG" EntitySet="DONNHAPHANG" />
           </AssociationSet>
           <AssociationSet Name="FK_HD_KM" Association="Self.FK_HD_KM">
-            <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
-            <End Role="HOADON" EntitySet="HOADONs" />
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAI" />
+            <End Role="HOADON" EntitySet="HOADON" />
           </AssociationSet>
           <AssociationSet Name="FK_HD_NV" Association="Self.FK_HD_NV">
-            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-            <End Role="HOADON" EntitySet="HOADONs" />
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="HOADON" EntitySet="HOADON" />
           </AssociationSet>
           <AssociationSet Name="FK_LOAI_NGUYENLIEU" Association="Self.FK_LOAI_NGUYENLIEU">
             <End Role="LOAI_NGUYENLIEU" EntitySet="LOAI_NGUYENLIEU" />
-            <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+            <End Role="NGUYENLIEU" EntitySet="NGUYENLIEU" />
           </AssociationSet>
           <AssociationSet Name="FK_LOAI_SANPHAM" Association="Self.FK_LOAI_SANPHAM">
             <End Role="LOAI_SANPHAM" EntitySet="LOAI_SANPHAM" />
-            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
           <AssociationSet Name="FK_TK_LOAI_TK" Association="Self.FK_TK_LOAI_TK">
             <End Role="LOAI_TAIKHOAN" EntitySet="LOAI_TAIKHOAN" />
-            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
           </AssociationSet>
           <AssociationSet Name="FK_NL_NCC" Association="Self.FK_NL_NCC">
-            <End Role="NCC" EntitySet="NCCs" />
-            <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+            <End Role="NCC" EntitySet="NCC" />
+            <End Role="NGUYENLIEU" EntitySet="NGUYENLIEU" />
           </AssociationSet>
           <AssociationSet Name="FK_TK_NV" Association="Self.FK_TK_NV">
-            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
-            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
           </AssociationSet>
           <AssociationSet Name="FK_TK_QUYEN" Association="Self.FK_TK_QUYEN">
             <End Role="TK_QUYEN" EntitySet="TK_QUYEN" />
-            <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+            <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -888,7 +910,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="COFFEE_HOUSEModelStoreContainer" CdmEntityContainer="COFFEE_HOUSEEntities">
-          <EntitySetMapping Name="BANs">
+          <EntitySetMapping Name="BAN">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.BAN">
               <MappingFragment StoreEntitySet="BAN">
                 <ScalarProperty Name="MaBan" ColumnName="MaBan" />
@@ -897,17 +919,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CTHDs">
-            <EntityTypeMapping TypeName="COFFEE_HOUSEModel.CTHD">
-              <MappingFragment StoreEntitySet="CTHD">
-                <ScalarProperty Name="MaCT" ColumnName="MaCT" />
-                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
-                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-                <ScalarProperty Name="SL" ColumnName="SL" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CTPHIEUNHAPs">
+          <EntitySetMapping Name="CTPHIEUNHAP">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.CTPHIEUNHAP">
               <MappingFragment StoreEntitySet="CTPHIEUNHAP">
                 <ScalarProperty Name="MaPN" ColumnName="MaPN" />
@@ -921,7 +933,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DONNHAPHANGs">
+          <EntitySetMapping Name="CTHD">
+            <EntityTypeMapping TypeName="COFFEE_HOUSEModel.CTHD">
+              <MappingFragment StoreEntitySet="CTHD">
+                <ScalarProperty Name="MaCT" ColumnName="MaCT" />
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="SL" ColumnName="SL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONNHAPHANG">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.DONNHAPHANG">
               <MappingFragment StoreEntitySet="DONNHAPHANG">
                 <ScalarProperty Name="MaDon" ColumnName="MaDon" />
@@ -931,7 +953,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HOADONs">
+          <EntitySetMapping Name="HOADON">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.HOADON">
               <MappingFragment StoreEntitySet="HOADON">
                 <ScalarProperty Name="MaHD" ColumnName="MaHD" />
@@ -943,7 +965,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="KHUYENMAIs">
+          <EntitySetMapping Name="KHUYENMAI">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.KHUYENMAI">
               <MappingFragment StoreEntitySet="KHUYENMAI">
                 <ScalarProperty Name="MaGiamGia" ColumnName="MaGiamGia" />
@@ -993,7 +1015,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NCCs">
+          <EntitySetMapping Name="NCC">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.NCC">
               <MappingFragment StoreEntitySet="NCC">
                 <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
@@ -1004,7 +1026,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NGUYENLIEUx">
+          <EntitySetMapping Name="NGUYENLIEU">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.NGUYENLIEU">
               <MappingFragment StoreEntitySet="NGUYENLIEU">
                 <ScalarProperty Name="MaNL" ColumnName="MaNL" />
@@ -1017,7 +1039,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NHANVIENs">
+          <EntitySetMapping Name="NHANVIEN">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.NHANVIEN">
               <MappingFragment StoreEntitySet="NHANVIEN">
                 <ScalarProperty Name="MaNV" ColumnName="MaNV" />
@@ -1033,7 +1055,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SANPHAMs">
+          <EntitySetMapping Name="SANPHAM">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.SANPHAM">
               <MappingFragment StoreEntitySet="SANPHAM">
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
@@ -1045,7 +1067,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TAIKHOANs">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="COFFEE_HOUSEModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAIKHOAN">
             <EntityTypeMapping TypeName="COFFEE_HOUSEModel.TAIKHOAN">
               <MappingFragment StoreEntitySet="TAIKHOAN">
                 <ScalarProperty Name="MaTK" ColumnName="MaTK" />
@@ -1081,7 +1114,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\NGOCCAN\Đồ án LT-Windows\Demo_DoAn\update3 file moi\-n-L-p-Tr-nh-Qu-n-L-Coffee-\self-discipline\DAL\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\code\C#\DoAnC#\-n-L-p-Tr-nh-Qu-n-L-Coffee-\self-discipline\DAL\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -44,6 +44,8 @@ namespace self_discipline
                 return;
             }
 
+            txtTenLoaiSanPham.Text = txtTenLoaiSanPham.Text.TrimEnd();
+
             QuanLyLoaiSanPhamDTO loaiSPNew = new QuanLyLoaiSanPhamDTO();
 
             try
@@ -95,6 +97,9 @@ namespace self_discipline
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            txtMaLoaiSanPham.Text = string.Empty;
+            txtTenLoaiSanPham.Text = string.Empty;
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
@@ -104,6 +109,8 @@ namespace self_discipline
                 MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            txtTenLoaiSanPham.Text = txtTenLoaiSanPham.Text.TrimEnd();
 
             QuanLyLoaiSanPhamDTO loaiSPCapNhat = new QuanLyLoaiSanPhamDTO();
 

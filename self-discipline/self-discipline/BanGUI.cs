@@ -141,6 +141,10 @@ namespace self_discipline
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            txtMaBan.Text = string.Empty;
+            cbbLoaiBan.SelectedIndex = 0;
+            cbbTrangThai.SelectedIndex = 0;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -148,12 +152,6 @@ namespace self_discipline
             txtMaBan.Text = string.Empty;
             cbbLoaiBan.SelectedIndex = 0;
             cbbTrangThai.SelectedIndex = 0;
-        }
-
-        private void btnLoaiBan_Click(object sender, EventArgs e)
-        {
-            frmLoaiBan frmLoaiBan = new frmLoaiBan();
-            frmLoaiBan.Show();
         }
     }
 }

@@ -58,6 +58,13 @@ namespace self_discipline
                 return;
             }
 
+            txtTen.Text = txtTen.Text.TrimEnd();
+            txtSDT.Text = txtSDT.Text.TrimEnd();
+            txtEmail.Text = txtEmail.Text.TrimEnd();
+            txtDiaChi.Text = txtDiaChi.Text.TrimEnd();
+            txtHo.Text = txtHo.Text.TrimEnd();
+            txtChucVu.Text = txtChucVu.Text.TrimEnd();
+
             NhanVienDTO nhanVienNew = new NhanVienDTO();
             DateTime now = DateTime.Now;
 
@@ -73,9 +80,9 @@ namespace self_discipline
                 nhanVienNew.DiaChi = txtDiaChi.Text;
                 nhanVienNew.TrangThai = 1;
 
-                if(now.Year - nhanVienNew.NgaySinh.Year < 18)
+                if(now.Year - nhanVienNew.NgaySinh.Year < 18 || now.Year - nhanVienNew.NgaySinh.Year > 40)
                 {
-                    MessageBox.Show("Tuổi phải lớn hơn 18!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Tuổi phải lớn hơn 18 và bé hơn 40!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else if (ktEmail.IsValidEmail(nhanVienNew.Email))
@@ -138,6 +145,16 @@ namespace self_discipline
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            txtMaNV.Text = string.Empty;
+            txtTen.Text = string.Empty;
+            txtSDT.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtDiaChi.Text = string.Empty;
+            txtHo.Text = string.Empty;
+            txtChucVu.Text = string.Empty;
+            cbbPhai.SelectedItem = null;
+            dtpNgaySinh.Value = DateTime.Now;
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
@@ -150,6 +167,13 @@ namespace self_discipline
                 MessageBox.Show("Vui lòng điền đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            txtTen.Text = txtTen.Text.TrimEnd();
+            txtSDT.Text = txtSDT.Text.TrimEnd();
+            txtEmail.Text = txtEmail.Text.TrimEnd();
+            txtDiaChi.Text = txtDiaChi.Text.TrimEnd();
+            txtHo.Text = txtHo.Text.TrimEnd();
+            txtChucVu.Text = txtChucVu.Text.TrimEnd();
 
             NhanVienDTO nhanVienCapNhat = new NhanVienDTO();
             DateTime now = DateTime.Now;
@@ -166,9 +190,9 @@ namespace self_discipline
                 nhanVienCapNhat.Email = txtEmail.Text;
                 nhanVienCapNhat.DiaChi = txtDiaChi.Text;
 
-                if (now.Year - nhanVienCapNhat.NgaySinh.Year < 18)
+                if (now.Year - nhanVienCapNhat.NgaySinh.Year < 18 || now.Year - nhanVienCapNhat.NgaySinh.Year > 40)
                 {
-                    MessageBox.Show("Tuổi phải lớn hơn 18!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Tuổi phải lớn hơn 18 và bé hơn 40!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else if (ktEmail.IsValidEmail(nhanVienCapNhat.Email))

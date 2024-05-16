@@ -69,6 +69,10 @@ namespace self_discipline
                 return;
             }
 
+            txtMaNV.Text = txtMaNV.Text.TrimEnd();
+            txtPassword.Text = txtPassword.Text.TrimEnd();
+            txtUsername.Text = txtUsername.Text.TrimEnd();
+
             TaiKhoanDTO tkNew = new TaiKhoanDTO();
 
             try
@@ -124,6 +128,13 @@ namespace self_discipline
                 MessageBox.Show("Xóa thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            txtMaTK.Text = string.Empty;
+            txtMaNV.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+            txtUsername.Text = string.Empty;
+            cbbLoaiTK.SelectedItem = null;
+            cbbQuyen.SelectedItem = null;
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)

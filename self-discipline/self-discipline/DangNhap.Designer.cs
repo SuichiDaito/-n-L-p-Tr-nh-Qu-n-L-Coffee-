@@ -187,6 +187,8 @@
             this.txtPassword_Login.PasswordChar = '*';
             this.txtPassword_Login.Size = new System.Drawing.Size(196, 33);
             this.txtPassword_Login.TabIndex = 2;
+            this.txtPassword_Login.TextChanged += new System.EventHandler(this.txtPassword_Login_TextChanged);
+            this.txtPassword_Login.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_Login_KeyPress);
             // 
             // txtUsername_Login
             // 
@@ -197,6 +199,8 @@
             this.txtUsername_Login.Name = "txtUsername_Login";
             this.txtUsername_Login.Size = new System.Drawing.Size(196, 33);
             this.txtUsername_Login.TabIndex = 1;
+            this.txtUsername_Login.TextChanged += new System.EventHandler(this.txtUsername_Login_TextChanged);
+            this.txtUsername_Login.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsername_Login_KeyPress);
             // 
             // label3
             // 
