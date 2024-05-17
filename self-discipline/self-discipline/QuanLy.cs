@@ -102,8 +102,7 @@ namespace self_discipline
 
         private void btnThongKe_Click(object sender, EventArgs e)
         {
-            frmChiTietThongKe thongke = new frmChiTietThongKe();
-            thongke.ShowDialog();
+            OpenChildForm(new frmChiTietThongKe());
         }
     }
 }
