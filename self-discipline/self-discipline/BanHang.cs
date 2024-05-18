@@ -286,17 +286,7 @@ namespace self_discipline
                             ChiTiet.ThemChiTiet(ct);
                         }
                         DialogResult dl = MessageBox.Show("Thêm Hoá Đơn Thành Công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //if (DialogResult.OK == dl)
-                        //{
-                        //    ReportHoaDon hd = new ReportHoaDon();
-                        //    hd.Show();
-                        //    this.Close();
-                        //}
-                        //else
-                        //{
-                        //    MessageBox.Show("Thêm Hoá Đơn Thất Bại", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //    return;
-                        //}
+                     
                     }
                     else
                     {
@@ -323,7 +313,14 @@ namespace self_discipline
             double TienKhach = float.Parse(txtTienKhachDua.Text);
             double TienThoi = 0;
             double TongTien = float.Parse(lblTotal.Text);
-            TienThoi = TienKhach - (TongTien*phantram);
+            if( phantram > 0)
+            {
+                TienThoi = TienKhach - (TongTien * phantram);
+            }
+            else
+            {
+                TienThoi = TienKhach - TongTien;
+            }      
             txtTienThua.Text = TienThoi.ToString();
         }
          public void TinhTien()
@@ -336,7 +333,14 @@ namespace self_discipline
             double TienKhach = float.Parse(txtTienKhachDua.Text);
             double TienThoi = 0;
             double TongTien = float.Parse(lblTotal.Text);
-            TienThoi = TienKhach - (TongTien * phantram);
+            if ( phantram > 0)
+            {
+                TienThoi = TienKhach - (TongTien * phantram);
+            }
+            else
+            {
+                TienThoi = TienKhach - TongTien;
+            }
             txtTienThua.Text = TienThoi.ToString();
         }
         private void btnTra_Click(object sender, EventArgs e)

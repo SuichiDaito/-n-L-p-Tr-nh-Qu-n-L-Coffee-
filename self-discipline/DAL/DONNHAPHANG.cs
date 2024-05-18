@@ -17,7 +17,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DONNHAPHANG()
         {
-            this.CTPHIEUNHAP = new HashSet<CTPHIEUNHAP>();
+            this.CTPHIEUNHAPs = new HashSet<CTPHIEUNHAP>();
         }
     
         public int MaDon { get; set; }
@@ -26,7 +26,7 @@ namespace DAL
         public int TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CTPHIEUNHAP> CTPHIEUNHAP { get; set; }
+        public virtual ICollection<CTPHIEUNHAP> CTPHIEUNHAPs { get; set; }
         public virtual NHANVIEN NHANVIEN { get; set; }
     }
 }

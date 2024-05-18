@@ -98,15 +98,5 @@ namespace self_discipline
                 e.Handled = true;
             }
         }
-
-        private void txtUsername_Login_TextChanged(object sender, EventArgs e)
-        {
-            txtUsername_Login.Text = string.Empty;
-        }
-
-        private void txtPassword_Login_TextChanged(object sender, EventArgs e)
-        {
-            txtUsername_Login.Text = string.Empty;
-        }
     }
 }

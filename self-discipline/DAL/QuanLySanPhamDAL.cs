@@ -13,7 +13,7 @@ namespace DAL
 
         public List<QuanLySanPhamDTO> layDSSP()
         {
-            return COFFEE_HOUSEEnts.SANPHAM.Select(u => new QuanLySanPhamDTO
+            return COFFEE_HOUSEEnts.SANPHAMs.Select(u => new QuanLySanPhamDTO
             {
                 MaSP = u.MaSP,
                 TenSP = u.TenSP,
@@ -35,7 +35,7 @@ namespace DAL
                     TrangThai = sanPhamNew.TrangThai
                 };
 
-                COFFEE_HOUSEEnts.SANPHAM.Add(sp);
+                COFFEE_HOUSEEnts.SANPHAMs.Add(sp);
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -49,7 +49,7 @@ namespace DAL
         {
             try
             {
-                SANPHAM sp = COFFEE_HOUSEEnts.SANPHAM.SingleOrDefault(u => u.MaSP == sanPhamCapNhat.MaSP);
+                SANPHAM sp = COFFEE_HOUSEEnts.SANPHAMs.SingleOrDefault(u => u.MaSP == sanPhamCapNhat.MaSP);
 
                 sp.TenSP = sanPhamCapNhat.TenSP;
                 sp.LoaiSP = sanPhamCapNhat.LoaiSP;
@@ -67,7 +67,7 @@ namespace DAL
         {
             try
             {
-                SANPHAM sp = COFFEE_HOUSEEnts.SANPHAM.SingleOrDefault(u => u.MaSP == id);
+                SANPHAM sp = COFFEE_HOUSEEnts.SANPHAMs.SingleOrDefault(u => u.MaSP == id);
 
                 sp.TrangThai = 0;
 

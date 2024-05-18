@@ -13,7 +13,7 @@ namespace DAL
 
         public List<QuanLyPhieuNhapDTO> layDSPN()
         {
-            return COFFEE_HOUSEEnts.CTPHIEUNHAP.Select(u => new QuanLyPhieuNhapDTO
+            return COFFEE_HOUSEEnts.CTPHIEUNHAPs.Select(u => new QuanLyPhieuNhapDTO
             {
                 MaPN = u.MaPN,
                 MaNL = (int)u.MaNL,
@@ -41,7 +41,7 @@ namespace DAL
                     TrangThai = pnNew.TrangThai
                 };
 
-                COFFEE_HOUSEEnts.CTPHIEUNHAP.Add(pn);
+                COFFEE_HOUSEEnts.CTPHIEUNHAPs.Add(pn);
 
                 return COFFEE_HOUSEEnts.SaveChanges() == 1;
             }
@@ -55,7 +55,7 @@ namespace DAL
         {
             try
             {
-                CTPHIEUNHAP pn = COFFEE_HOUSEEnts.CTPHIEUNHAP.SingleOrDefault(u => u.MaPN == pnCapNhat.MaPN);
+                CTPHIEUNHAP pn = COFFEE_HOUSEEnts.CTPHIEUNHAPs.SingleOrDefault(u => u.MaPN == pnCapNhat.MaPN);
 
                 pn.MaNL = pnCapNhat.MaNL;
                 pn.MaDon = pnCapNhat.MaDon;
@@ -76,7 +76,7 @@ namespace DAL
         {
             try
             {
-                CTPHIEUNHAP pn = COFFEE_HOUSEEnts.CTPHIEUNHAP.SingleOrDefault(u => u.MaPN == id);
+                CTPHIEUNHAP pn = COFFEE_HOUSEEnts.CTPHIEUNHAPs.SingleOrDefault(u => u.MaPN == id);
 
                 pn.TrangThai = 0;
 

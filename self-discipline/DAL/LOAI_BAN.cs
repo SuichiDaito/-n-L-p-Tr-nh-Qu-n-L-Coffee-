@@ -17,7 +17,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LOAI_BAN()
         {
-            this.BAN = new HashSet<BAN>();
+            this.BANs = new HashSet<BAN>();
         }
     
         public int MaLoai { get; set; }
@@ -25,6 +25,6 @@ namespace DAL
         public int TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BAN> BAN { get; set; }
+        public virtual ICollection<BAN> BANs { get; set; }
     }
 }
