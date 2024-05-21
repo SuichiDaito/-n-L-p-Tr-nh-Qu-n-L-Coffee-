@@ -15,14 +15,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.Design.WebControls;
 using System.Windows.Forms;
+using ZXing;
+using ZXing.Common;
+using ZXing.Rendering;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace self_discipline
 {
     public partial class frmBanHang : Form
     {
-        public delegate void MaHoaDon(string value);
-        public event MaHoaDon SendId;
+      
         QuanLySanPhamDTO quanLySanPhamDTO = new QuanLySanPhamDTO();
         QuanLySanPhamBLL quanLySanPhamBLL = new QuanLySanPhamBLL();
         QuanLyLoaiSanPhamBLL quanLyLoaiSanPhamBLL = new QuanLyLoaiSanPhamBLL();
@@ -270,12 +272,8 @@ namespace self_discipline
                     if (HoaDonBLL.ThemHoaDon(hoadon) == true)
                     {
                         int MaHD = HoaDonBLL.LayMaHoaDon();
-                        string MaHoaDon = MaHD.ToString();
 
-                        if (SendId != null)
-                        {
-                            SendId(MaHoaDon);
-                        }
+
                         QuanLyCTHoaDonDTO ct = new QuanLyCTHoaDonDTO();
                         foreach (DataGridViewRow row in dgvHoaDonBanHang.Rows)
                         {
@@ -298,6 +296,21 @@ namespace self_discipline
             }
         }
 
+      
+         public void TinhTien()
+        {
+            int makm = Convert.ToInt32(cbbKhuyenMai.SelectedValue.ToString());
+            double phantram = quanLyKhuyenMain.LayPhanTramKhuyenMai(makm);
+            string tong = string.Format("{0}%", phantram * 100);
+            txtTienGiam.Text = tong;
+          
+            double TienKhach = float.Parse(txtTienKhachDua.Text); // 400k
+            double TienThoi = 0.0;
+            double TongTien = float.Parse(lblTotal.Text);// 393k
+            double sotiengiam = phantram * TongTien; // 71.6k 
+            TienThoi = TienKhach - (TongTien - sotiengiam);      
+            txtTienThua.Text = TienThoi.ToString();
+        }
         private void txtTienKhachDua_TextChanged(object sender, EventArgs e)
         {
             if (txtTienKhachDua.Text == "")
@@ -305,43 +318,7 @@ namespace self_discipline
                 txtTienThua.Text = "";
                 return;
             }
-            int makm = Convert.ToInt32(cbbKhuyenMai.SelectedValue.ToString());
-            double phantram = quanLyKhuyenMain.LayPhanTramKhuyenMai(makm);
-            string tong = string.Format("{0}%",phantram*100);
-            txtTienGiam.Text = tong;
-
-            double TienKhach = float.Parse(txtTienKhachDua.Text);
-            double TienThoi = 0;
-            double TongTien = float.Parse(lblTotal.Text);
-            if( phantram > 0)
-            {
-                TienThoi = TienKhach - (TongTien * phantram);
-            }
-            else
-            {
-                TienThoi = TienKhach - TongTien;
-            }      
-            txtTienThua.Text = TienThoi.ToString();
-        }
-         public void TinhTien()
-        {
-            int makm = Convert.ToInt32(cbbKhuyenMai.SelectedValue.ToString());
-            double phantram = quanLyKhuyenMain.LayPhanTramKhuyenMai(makm);
-            string tong = string.Format("{0}%", phantram * 100);
-            txtTienGiam.Text = tong;
-
-            double TienKhach = float.Parse(txtTienKhachDua.Text);
-            double TienThoi = 0;
-            double TongTien = float.Parse(lblTotal.Text);
-            if ( phantram > 0)
-            {
-                TienThoi = TienKhach - (TongTien * phantram);
-            }
-            else
-            {
-                TienThoi = TienKhach - TongTien;
-            }
-            txtTienThua.Text = TienThoi.ToString();
+            TinhTien();
         }
         private void btnTra_Click(object sender, EventArgs e)
         {
@@ -391,6 +368,29 @@ namespace self_discipline
         {
             txtTienKhachDua.Text = "0.00";
             txtTienGiam.Text = "0.00";
+        }
+
+        private void guna2TileButton1_Click(object sender, EventArgs e)
+        {
+            int MaHD = HoaDonBLL.LayMaHoaDon();
+            string ValueTable = txtBan.Text;
+            string hd = MaHD.ToString();
+            int makm = Convert.ToInt32(cbbKhuyenMai.SelectedValue.ToString());
+            double phantram = quanLyKhuyenMain.LayPhanTramKhuyenMai(makm);
+            string chietkhau = phantram.ToString();
+
+            ReportHoaDonThanhToan report = new ReportHoaDonThanhToan(hd,ValueTable, chietkhau);
+            report.ShowDialog();
+        }
+
+        private void btnMomo_Click(object sender, EventArgs e)
+        {
+            int makm = Convert.ToInt32(cbbKhuyenMai.SelectedValue.ToString());
+            double phantram = quanLyKhuyenMain.LayPhanTramKhuyenMai(makm);
+            string giam = phantram.ToString();
+             string tong  =  lblTotal.Text;
+            ThanhToanMoMo momo = new ThanhToanMoMo(tong,giam);
+            momo.ShowDialog();
         }
     }
 }
